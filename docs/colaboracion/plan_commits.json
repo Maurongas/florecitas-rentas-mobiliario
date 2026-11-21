@@ -1,0 +1,79 @@
+{
+  "josselyn": {
+    "nombre": "Rivera Chavez Josselyn Alexa",
+    "rama": "parte-josselyn-modelo",
+    "titulo_pr": "Modelo de datos: diagramas, esquema, datos de prueba y reporte",
+    "commits": [
+      { "mensaje": "Agrega diagramas del modelo en las 5 notaciones (Crow's Foot, Chen, Connect to Columns, UML e IDEF1X)",
+        "rutas": ["Diagramas"] },
+      { "mensaje": "Agrega el esquema de la base de datos: tablas, llaves y restricciones (01_esquema.sql)",
+        "rutas": ["Sql/01_esquema.sql"] },
+      { "mensaje": "Agrega datos de prueba ficticios y reproducibles (03_datos.sql)",
+        "rutas": ["Sql/03_datos.sql"] },
+      { "mensaje": "Agrega usuario de la aplicación, respaldo e instalador de la base de datos",
+        "rutas": ["Sql/06_seguridad_respaldo.sql", "Sql/instalar_bd.ps1"] },
+      { "mensaje": "Agrega el generador y los textos del reporte técnico",
+        "rutas": ["docs/reporte"] },
+      { "mensaje": "Agrega el reporte técnico en PDF",
+        "rutas": ["Reporte.pdf"] }
+    ]
+  },
+  "veronica": {
+    "nombre": "Acevedo Carrillo Veronica",
+    "rama": "parte-veronica-rutinas",
+    "titulo_pr": "Programación en la BD: rutinas, consultas, vistas y pruebas",
+    "commits": [
+      { "mensaje": "Agrega funciones, procedimientos almacenados y triggers (02_rutinas.sql)",
+        "rutas": ["Sql/02_rutinas.sql"] },
+      { "mensaje": "Agrega vistas, 12 consultas documentadas y transacciones COMMIT/ROLLBACK",
+        "rutas": ["Sql/04_consultas_vistas.sql"] },
+      { "mensaje": "Agrega 41 casos de prueba de la base de datos con su resultado observado",
+        "rutas": ["Sql/05_pruebas.sql", "Pruebas/salidas_sql"] },
+      { "mensaje": "Agrega pruebas automatizadas de interfaz y capturas de evidencia",
+        "rutas": ["Pruebas/e2e_capturas.py", "Pruebas/resultados_ui.json", "Pruebas/capturas"] },
+      { "mensaje": "Agrega matriz de pruebas, incidencias y evidencia de persistencia",
+        "rutas": ["Pruebas/matriz_pruebas.csv", "Pruebas/incidencias.md", "Pruebas/evidencia_persistencia_mysql.txt"] }
+    ]
+  },
+  "mauro": {
+    "nombre": "Arango Gomez Mauro Daniel",
+    "rama": "parte-mauro-aplicacion",
+    "titulo_pr": "Aplicación web .NET 10 (Razor Pages) conectada a MySQL",
+    "commits": [
+      { "mensaje": "Crea la solución .NET 10 y la configuración de la aplicación",
+        "rutas": ["Aplicacion/Florecitas.Rentas.slnx",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Florecitas.Rentas.Web.csproj",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Program.cs",
+                  "Aplicacion/src/Florecitas.Rentas.Web/appsettings.json",
+                  "Aplicacion/src/Florecitas.Rentas.Web/appsettings.Development.json",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Properties"] },
+      { "mensaje": "Agrega la capa de acceso a datos con Dapper, modelos y cifrado de contraseñas",
+        "rutas": ["Aplicacion/src/Florecitas.Rentas.Web/Data",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Models",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Security"] },
+      { "mensaje": "Agrega el sistema de diseño, layout, componentes compartidos e inicio de sesión",
+        "rutas": ["Aplicacion/src/Florecitas.Rentas.Web/wwwroot",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Shared",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/_ViewImports.cshtml",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/_ViewStart.cshtml",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/PaginaBase.cs",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Error.cshtml",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Error.cshtml.cs",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Cuenta"] },
+      { "mensaje": "Agrega tablero, disponibilidad y el flujo de reservaciones, entregas y devoluciones",
+        "rutas": ["Aplicacion/src/Florecitas.Rentas.Web/Pages/Index.cshtml",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Index.cshtml.cs",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Disponibilidad.cshtml",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Disponibilidad.cshtml.cs",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Reservaciones"] },
+      { "mensaje": "Agrega CRUD de clientes, artículos, categorías y empleados",
+        "rutas": ["Aplicacion/src/Florecitas.Rentas.Web/Pages/Clientes",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Articulos",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Categorias",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Empleados"] },
+      { "mensaje": "Agrega módulo de reportes con filtros, exportación CSV y auditoría",
+        "rutas": ["Aplicacion/src/Florecitas.Rentas.Web/Pages/Reportes",
+                  "Aplicacion/src/Florecitas.Rentas.Web/Pages/Bitacora"] }
+    ]
+  }
+}
