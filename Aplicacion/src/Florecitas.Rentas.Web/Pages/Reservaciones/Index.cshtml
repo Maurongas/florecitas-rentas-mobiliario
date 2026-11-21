@@ -1,0 +1,92 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Reservaciones.IndexModel
+@{
+    ViewData["Title"] = "Reservaciones";
+}
+<div class="page-header">
+    <div>
+        <h1>Reservaciones</h1>
+        <p>Busca, filtra y da seguimiento a cada renta: confirmada → entregada → finalizada.</p>
+    </div>
+    <a class="btn btn-primary" asp-page="Nueva"><i class="bi bi-plus-lg"></i>Nueva reservación</a>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="get" class="row g-3 align-items-end">
+            <div class="col-12 col-lg-4">
+                <label class="form-label" for="f-buscar">Buscar</label>
+                <input id="f-buscar" class="form-control" name="Filtro.Buscar" value="@Model.Filtro.Buscar" placeholder="Folio, cliente o lugar del evento" />
+            </div>
+            <div class="col-6 col-lg-2">
+                <label class="form-label" for="f-estado">Estado</label>
+                <select id="f-estado" class="form-select" name="Filtro.Estado">
+                    <option value="">Todos</option>
+                    @foreach (var e in Estados.Todos)
+                    {
+                        <option value="@e" selected="@(Model.Filtro.Estado == e)">@e</option>
+                    }
+                </select>
+            </div>
+            <div class="col-6 col-lg-2">
+                <label class="form-label" for="f-desde">Desde</label>
+                <input id="f-desde" type="date" class="form-control" name="Filtro.Desde" value="@Model.Filtro.Desde?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-6 col-lg-2">
+                <label class="form-label" for="f-hasta">Hasta</label>
+                <input id="f-hasta" type="date" class="form-control" name="Filtro.Hasta" value="@Model.Filtro.Hasta?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-6 col-lg-2 d-flex gap-2">
+                <button class="btn btn-primary flex-grow-1" type="submit"><i class="bi bi-funnel"></i>Filtrar</button>
+                @if (Model.HayFiltros)
+                {
+                    <a class="btn btn-soft btn-icon" asp-page="Index" title="Limpiar filtros" aria-label="Limpiar filtros"><i class="bi bi-x-lg"></i></a>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<partial name="_Errores" />
+
+<div class="card">
+    @if (Model.Resultado.Elementos.Count == 0 && !Model.SinConexion)
+    {
+        @if (Model.HayFiltros)
+        {
+            <partial name="_Vacio" model='new EstadoVacio("bi-search", "Sin resultados", "Ninguna reservación coincide con los filtros. Prueba con otros criterios.")' />
+        }
+        else
+        {
+            <partial name="_Vacio" model='new EstadoVacio("bi-journal", "Todavía no hay reservaciones", "Registra la primera reservación para empezar a controlar tu inventario.", "Nueva reservación", "/Reservaciones/Nueva")' />
+        }
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr><th>Folio</th><th>Cliente</th><th>Fechas</th><th class="d-none d-lg-table-cell">Lugar</th><th class="text-end">Piezas</th><th class="text-end">Total</th><th>Estado</th></tr>
+                </thead>
+                <tbody>
+                @foreach (var r in Model.Resultado.Elementos)
+                {
+                    <tr data-href="/Reservaciones/Detalle/@r.IdReservacion">
+                        <td><a class="fw-bold text-decoration-none" asp-page="Detalle" asp-route-id="@r.IdReservacion">#@r.IdReservacion</a></td>
+                        <td><div class="fw-semibold">@r.Cliente</div><div class="small text-muted">@r.Telefono</div></td>
+                        <td class="tabular">
+                            <div>@r.FechaInicio.ToString("dd MMM yyyy")@(r.Dias > 1 ? " – " + r.FechaFin.ToString("dd MMM") : "")</div>
+                            <div class="small text-muted">@r.Dias día(s)</div>
+                        </td>
+                        <td class="d-none d-lg-table-cell small text-muted">@r.LugarEvento</td>
+                        <td class="text-end tabular">@r.Piezas.ToString("N0")</td>
+                        <td class="text-end tabular fw-semibold">@r.Total.ToString("C")</td>
+                        <td><partial name="_Estado" model="r.Estado" /></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <partial name="_Paginacion" model="(Model.Resultado.NumeroPagina, Model.Resultado.TotalPaginas, Model.Resultado.Total)" />
+    }
+</div>

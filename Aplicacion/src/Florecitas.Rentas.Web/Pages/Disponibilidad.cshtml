@@ -1,0 +1,82 @@
+@page
+@model DisponibilidadModel
+@{
+    ViewData["Title"] = "Disponibilidad";
+    var grupos = Model.Resultados.GroupBy(r => r.Categoria);
+}
+<div class="page-header">
+    <div>
+        <h1>Disponibilidad por fecha</h1>
+        <p>Piezas libres para <strong>todo</strong> el rango: se revisa día por día y se toma el valor más bajo (RN-01, RN-02).</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3 align-items-end">
+            <div class="col-6 col-md-3">
+                <label class="form-label" asp-for="Inicio">Desde</label>
+                <input class="form-control" asp-for="Inicio" type="date" />
+            </div>
+            <div class="col-6 col-md-3">
+                <label class="form-label" asp-for="Fin">Hasta</label>
+                <input class="form-control" asp-for="Fin" type="date" />
+            </div>
+            <div class="col-12 col-md-3">
+                <label class="form-label" asp-for="IdCategoria">Categoría</label>
+                <select class="form-select" asp-for="IdCategoria" asp-items="@(new SelectList(Model.Categorias, "IdCategoria", "Nombre"))">
+                    <option value="">Todas</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-3 d-flex gap-2">
+                <button class="btn btn-primary flex-grow-1" type="submit"><i class="bi bi-search"></i>Consultar</button>
+                @if (Model.Resultados.Count > 0)
+                {
+                    <a class="btn btn-soft" asp-page="/Reservaciones/Nueva" asp-route-inicio="@Model.Inicio?.ToString("yyyy-MM-dd")" asp-route-fin="@Model.Fin?.ToString("yyyy-MM-dd")" title="Reservar con estas fechas"><i class="bi bi-journal-plus"></i></a>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<partial name="_Errores" />
+
+@if (!Model.SinConexion && ViewData.ModelState.IsValid)
+{
+    @if (Model.Resultados.Count == 0)
+    {
+        <div class="card"><partial name="_Vacio" model='new EstadoVacio("bi-box", "No hay artículos activos", "Da de alta artículos en el catálogo para consultar su disponibilidad.")' /></div>
+    }
+    else
+    {
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="chip"><i class="bi bi-calendar-range"></i>@Model.Inicio?.ToString("dd MMM yyyy") – @Model.Fin?.ToString("dd MMM yyyy") · @Model.Dias día(s)</span>
+            <span class="chip tone-success"><i class="bi bi-check2-circle"></i>@Model.Resultados.Count(r => r.PorcentajeLibre >= 30) con buena disponibilidad</span>
+            <span class="chip tone-danger"><i class="bi bi-x-circle"></i>@Model.Resultados.Count(r => r.Disponible <= 0) agotados</span>
+        </div>
+        @foreach (var g in grupos)
+        {
+            <div class="card mb-3">
+                <div class="card-header">@g.Key</div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead><tr><th>Artículo</th><th class="text-end">Total</th><th class="text-end">Apartadas</th><th class="text-end">Disponibles</th><th style="width:28%">Ocupación</th><th class="text-end">Precio/día</th></tr></thead>
+                        <tbody>
+                        @foreach (var d in g)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@d.Nombre</td>
+                                <td class="text-end tabular">@d.CantidadTotal</td>
+                                <td class="text-end tabular text-muted">@(d.CantidadTotal - d.Disponible)</td>
+                                <td class="text-end tabular fw-bold @(d.Disponible <= 0 ? "text-danger" : "")">@d.Disponible</td>
+                                <td><div class="meter @(d.Disponible <= 0 ? "none" : d.PorcentajeLibre < 30 ? "low" : "")" role="img" aria-label="@d.PorcentajeLibre% libre"><span style="width:@d.PorcentajeLibre%"></span></div></td>
+                                <td class="text-end tabular">@d.PrecioDia.ToString("C")</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    }
+}

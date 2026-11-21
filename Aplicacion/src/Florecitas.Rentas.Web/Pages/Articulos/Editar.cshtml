@@ -1,0 +1,83 @@
+@page "{id:int?}"
+@model Florecitas.Rentas.Web.Pages.Articulos.EditarModel
+@{
+    ViewData["Title"] = Model.EsNuevo ? "Nuevo artículo" : "Editar artículo";
+}
+<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a asp-page="Index">Artículos</a></li><li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li></ol></nav>
+<div class="page-header"><div><h1>@ViewData["Title"]</h1><p>Solo el Administrador puede modificar el catálogo y los precios (RN-13).</p></div></div>
+
+<partial name="_Errores" />
+
+<div class="row g-4">
+    <div class="col-12 col-xl-7">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" novalidate class="row g-3">
+                    <input type="hidden" asp-for="Form.IdArticulo" />
+                    <div class="col-md-6">
+                        <label asp-for="Form.IdCategoria" class="form-label required"></label>
+                        <select asp-for="Form.IdCategoria" class="form-select" asp-items="@(new SelectList(Model.Categorias, "IdCategoria", "Nombre"))"><option value="">Selecciona…</option></select>
+                        <span asp-validation-for="Form.IdCategoria"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Form.Nombre" class="form-label required"></label>
+                        <input asp-for="Form.Nombre" class="form-control" placeholder="Ej. Silla plegable blanca" />
+                        <span asp-validation-for="Form.Nombre"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Form.Descripcion" class="form-label"></label>
+                        <input asp-for="Form.Descripcion" class="form-control" placeholder="Medidas, material o detalles" />
+                        <span asp-validation-for="Form.Descripcion"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Form.CantidadTotal" class="form-label required"></label>
+                        <input asp-for="Form.CantidadTotal" class="form-control tabular" type="number" min="0" />
+                        <div class="form-text">No puede quedar por debajo de lo ya comprometido en reservaciones vigentes.</div>
+                        <span asp-validation-for="Form.CantidadTotal"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Form.PrecioDia" class="form-label required"></label>
+                        <div class="input-group"><span class="input-group-text">$</span><input asp-for="Form.PrecioDia" class="form-control tabular" type="number" min="0.01" step="0.01" /></div>
+                        <div class="form-text">Por pieza, por día. Los cambios quedan en el historial de precios.</div>
+                        <span asp-validation-for="Form.PrecioDia"></span>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check form-switch">
+                            <input asp-for="Form.Activo" class="form-check-input" role="switch" />
+                            <label asp-for="Form.Activo" class="form-check-label"></label>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex gap-2 justify-content-end">
+                        <a class="btn btn-soft" asp-page="Index">Cancelar</a>
+                        <button class="btn btn-primary" type="submit"><i class="bi bi-check2"></i>Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @if (!Model.EsNuevo)
+    {
+        <div class="col-12 col-xl-5">
+            <div class="card">
+                <div class="card-header"><i class="bi bi-clock-history me-2"></i>Historial de precios</div>
+                @if (Model.Precios.Count == 0)
+                {
+                    <partial name="_Vacio" model='new EstadoVacio("bi-tag", "Sin cambios de precio", "Cuando se modifique el precio, el trigger trg_articulo_au lo registrará aquí.")' />
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var p in Model.Precios)
+                        {
+                            <li class="list-group-item bg-transparent d-flex justify-content-between">
+                                <div><span class="text-muted text-decoration-line-through tabular">@p.PrecioAnterior.ToString("C")</span> <i class="bi bi-arrow-right mx-1"></i> <strong class="tabular">@p.PrecioNuevo.ToString("C")</strong></div>
+                                <div class="small text-muted text-end">@p.FechaCambio.ToString("dd MMM yyyy HH:mm")<br />@(p.Empleado ?? "—")</div>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    }
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

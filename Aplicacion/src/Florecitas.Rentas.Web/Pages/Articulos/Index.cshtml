@@ -1,0 +1,96 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Articulos.IndexModel
+@{
+    ViewData["Title"] = "Artículos";
+}
+<div class="page-header">
+    <div>
+        <h1>Artículos</h1>
+        <p>Inventario por modelo y cantidad. La disponibilidad de hoy descuenta lo que ya salió o está apartado.</p>
+    </div>
+    @if (Model.PuedeEditar)
+    {
+        <a class="btn btn-primary" asp-page="Editar"><i class="bi bi-plus-lg"></i>Nuevo artículo</a>
+    }
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="get" class="row g-3 align-items-end">
+            <div class="col-12 col-md-5">
+                <label class="form-label" for="bArt">Buscar</label>
+                <input id="bArt" class="form-control" name="Buscar" value="@Model.Buscar" placeholder="Nombre o descripción" />
+            </div>
+            <div class="col-7 col-md-3">
+                <label class="form-label" for="cArt">Categoría</label>
+                <select id="cArt" class="form-select" name="IdCategoria">
+                    <option value="">Todas</option>
+                    @foreach (var c in Model.Categorias) { <option value="@c.IdCategoria" selected="@(Model.IdCategoria == c.IdCategoria)">@c.Nombre</option> }
+                </select>
+            </div>
+            <div class="col-5 col-md-2">
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="inact" name="Inactivos" value="true" checked="@Model.Inactivos" />
+                    <label class="form-check-label" for="inact">Ver dados de baja</label>
+                </div>
+            </div>
+            <div class="col-12 col-md-2"><button class="btn btn-primary w-100" type="submit"><i class="bi bi-funnel"></i>Filtrar</button></div>
+        </form>
+    </div>
+</div>
+
+<partial name="_Errores" />
+
+<div class="card">
+    @if (Model.Articulos.Count == 0 && !Model.SinConexion)
+    {
+        <partial name="_Vacio" model='new EstadoVacio("bi-box-seam", "No hay artículos para mostrar", "Cambia los filtros o da de alta un artículo nuevo.", Model.PuedeEditar ? "Nuevo artículo" : null, Model.PuedeEditar ? "/Articulos/Editar" : null)' />
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead><tr><th>Artículo</th><th>Categoría</th><th class="text-end">Total</th><th style="width:20%">Libres hoy</th><th class="text-end">Precio/día</th><th class="text-end">Rentas</th>@if (Model.PuedeEditar) { <th class="text-end"><span class="visually-hidden">Acciones</span></th> }</tr></thead>
+                <tbody>
+                @foreach (var a in Model.Articulos)
+                {
+                    var pct = a.CantidadTotal == 0 ? 0 : (int)(100.0 * Math.Max(a.DisponibleHoy, 0) / a.CantidadTotal);
+                    <tr class="@(a.Activo ? "" : "opacity-50")">
+                        <td>
+                            <div class="fw-semibold">@a.Nombre @if (!a.Activo) { <span class="chip ms-1">Baja</span> }</div>
+                            <div class="small text-muted">@a.Descripcion</div>
+                        </td>
+                        <td><span class="chip">@a.Categoria</span></td>
+                        <td class="text-end tabular">@a.CantidadTotal</td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="meter flex-grow-1 @(a.DisponibleHoy <= 0 ? "none" : pct < 30 ? "low" : "")"><span style="width:@pct%"></span></div>
+                                <span class="small tabular">@a.DisponibleHoy</span>
+                            </div>
+                        </td>
+                        <td class="text-end tabular">@a.PrecioDia.ToString("C")</td>
+                        <td class="text-end tabular">@a.VecesRentado</td>
+                        @if (Model.PuedeEditar)
+                        {
+                            <td class="text-end text-nowrap">
+                                <a class="btn btn-sm btn-soft btn-icon" asp-page="Editar" asp-route-id="@a.IdArticulo" title="Editar" aria-label="Editar @a.Nombre"><i class="bi bi-pencil"></i></a>
+                                <form method="post" asp-page-handler="Activo" asp-route-id="@a.IdArticulo" asp-route-activo="@(!a.Activo)" asp-route-Buscar="@Model.Buscar" asp-route-IdCategoria="@Model.IdCategoria" asp-route-Inactivos="@Model.Inactivos" class="d-inline"
+                                      data-confirmar="@(a.Activo ? $"¿Dar de baja {a.Nombre}? Se conserva su historial." : $"¿Reactivar {a.Nombre}?")">
+                                    <button class="btn btn-sm btn-soft btn-icon" type="submit" title="@(a.Activo ? "Dar de baja" : "Reactivar")" aria-label="@(a.Activo ? "Dar de baja" : "Reactivar") @a.Nombre"><i class="bi @(a.Activo ? "bi-archive" : "bi-arrow-counterclockwise")"></i></button>
+                                </form>
+                                @if (a.VecesRentado == 0)
+                                {
+                                    <form method="post" asp-page-handler="Eliminar" asp-route-id="@a.IdArticulo" class="d-inline" data-confirmar="¿Eliminar definitivamente @a.Nombre?">
+                                        <button class="btn btn-sm btn-soft btn-icon" type="submit" title="Eliminar" aria-label="Eliminar @a.Nombre"><i class="bi bi-trash3"></i></button>
+                                    </form>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <div class="p-3 small text-muted">@Model.Articulos.Count artículo(s) · @Model.Articulos.Sum(a => a.CantidadTotal).ToString("N0") piezas en inventario</div>
+    }
+</div>

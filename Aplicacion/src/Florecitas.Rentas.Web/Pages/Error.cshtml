@@ -1,0 +1,18 @@
+@page
+@model ErrorModel
+@{
+    ViewData["Title"] = Model.Codigo == 404 ? "Página no encontrada" : "Error";
+    Layout = "_LayoutSimple";
+}
+<div class="min-vh-100 d-grid" style="place-items:center">
+    <div class="card p-4 text-center" style="max-width:460px">
+        <div class="display-4 fw-bold" style="color:var(--color-primary)">@Model.Codigo</div>
+        <h1 class="h4">@(Model.Codigo == 404 ? "No encontramos esa página" : "Algo salió mal")</h1>
+        <p class="text-muted">@(Model.Codigo == 404 ? "Puede que el registro ya no exista o la dirección sea incorrecta." : "Ocurrió un error al procesar la solicitud. Intenta de nuevo.")</p>
+        @if (!string.IsNullOrEmpty(Model.RequestId) && Model.Codigo != 404)
+        {
+            <p class="small text-muted">Folio: <code>@Model.RequestId</code></p>
+        }
+        <a class="btn btn-primary" href="/"><i class="bi bi-house"></i>Ir al tablero</a>
+    </div>
+</div>

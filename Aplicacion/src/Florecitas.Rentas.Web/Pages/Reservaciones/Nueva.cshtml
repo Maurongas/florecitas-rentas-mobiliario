@@ -1,0 +1,226 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Reservaciones.NuevaModel
+@{
+    ViewData["Title"] = "Nueva reservación";
+    var errRenglones = ViewData.ModelState["Renglones"]?.Errors;
+}
+<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a asp-page="Index">Reservaciones</a></li><li class="breadcrumb-item active" aria-current="page">Nueva</li></ol></nav>
+<div class="page-header">
+    <div>
+        <h1>Nueva reservación</h1>
+        <p>Elige las fechas y el sistema te muestra cuántas piezas hay libres. Si pides más de lo disponible, no se guarda (RN-03).</p>
+    </div>
+</div>
+
+<partial name="_Errores" />
+
+<form method="post" id="formReservacion" novalidate>
+    <div class="row g-4">
+        <div class="col-12 col-xl-8">
+            <div class="card mb-4">
+                <div class="card-header"><span class="chip tone-primary me-2">1</span>Datos del evento</div>
+                <div class="card-body row g-3">
+                    <div class="col-12 col-md-6">
+                        <label asp-for="IdCliente" class="form-label required"></label>
+                        <select asp-for="IdCliente" class="form-select" asp-items="@(new SelectList(Model.Clientes.Select(c => new { c.IdCliente, Texto = c.NombreCompleto + " · " + c.Telefono }), "IdCliente", "Texto"))">
+                            <option value="">Selecciona…</option>
+                        </select>
+                        <span asp-validation-for="IdCliente"></span>
+                        <div class="form-text">¿Es nuevo? <a asp-page="/Clientes/Editar" asp-route-volver="reservacion">Registrar cliente</a></div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label asp-for="Lugar" class="form-label required"></label>
+                        <input asp-for="Lugar" class="form-control" placeholder="Ej. Salón Los Arcos, Ensenada" maxlength="150" />
+                        <span asp-validation-for="Lugar"></span>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label asp-for="Inicio" class="form-label required"></label>
+                        <input asp-for="Inicio" type="date" class="form-control" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        <span asp-validation-for="Inicio"></span>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <label asp-for="Fin" class="form-label required"></label>
+                        <input asp-for="Fin" type="date" class="form-control" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        <span asp-validation-for="Fin"></span>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <span class="form-label d-block">Días de renta</span>
+                        <div class="form-control d-flex align-items-center bg-transparent" id="diasRenta" aria-live="polite">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><span class="chip tone-primary me-2">2</span>Artículos</span>
+                    <span class="small text-muted" id="estadoDisp" aria-live="polite"></span>
+                </div>
+                <div class="card-body">
+                    @if (errRenglones is { Count: > 0 })
+                    {
+                        <div class="alert alert-danger py-2" role="alert">@foreach (var e in errRenglones) { <div>@e.ErrorMessage</div> }</div>
+                    }
+                    <div id="renglones">
+                        @for (var i = 0; i < Model.Renglones.Count; i++)
+                        {
+                            <div class="row g-2 align-items-end renglon mb-2">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label small" for="art-@i">Artículo</label>
+                                    <select class="form-select sel-articulo" id="art-@i" name="Renglones[@i].IdArticulo">
+                                        <option value="">Selecciona…</option>
+                                        @foreach (var g in Model.Articulos.GroupBy(a => a.Categoria))
+                                        {
+                                            <optgroup label="@g.Key">
+                                                @foreach (var a in g)
+                                                {
+                                                    <option value="@a.IdArticulo" data-precio="@a.PrecioDia.ToString(System.Globalization.CultureInfo.InvariantCulture)" selected="@(Model.Renglones[i].IdArticulo == a.IdArticulo)">@a.Nombre</option>
+                                                }
+                                            </optgroup>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-5 col-md-2">
+                                    <label class="form-label small" for="cant-@i">Cantidad</label>
+                                    <input class="form-control inp-cantidad tabular" id="cant-@i" type="number" min="1" step="1" inputmode="numeric" name="Renglones[@i].Cantidad" value="@Model.Renglones[i].Cantidad" />
+                                </div>
+                                <div class="col-5 col-md-3">
+                                    <span class="form-label small d-block">Disponible · Subtotal</span>
+                                    <div class="form-control bg-transparent d-flex justify-content-between info-renglon tabular"><span class="disp">—</span><span class="sub">—</span></div>
+                                </div>
+                                <div class="col-2 col-md-1 text-end">
+                                    <button type="button" class="btn btn-soft btn-icon btn-quitar" aria-label="Quitar renglón"><i class="bi bi-trash3"></i></button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <button type="button" class="btn btn-soft mt-2" id="btnAgregar"><i class="bi bi-plus-lg"></i>Agregar artículo</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-4">
+            <div class="card sticky-summary">
+                <div class="card-header"><span class="chip tone-primary me-2">3</span>Resumen</div>
+                <div class="card-body">
+                    <dl class="row mb-0 small">
+                        <dt class="col-6 text-muted fw-normal">Artículos</dt><dd class="col-6 text-end tabular" id="resArticulos">0</dd>
+                        <dt class="col-6 text-muted fw-normal">Piezas</dt><dd class="col-6 text-end tabular" id="resPiezas">0</dd>
+                        <dt class="col-6 text-muted fw-normal">Por día</dt><dd class="col-6 text-end tabular" id="resDia">$0.00</dd>
+                        <dt class="col-6 text-muted fw-normal">Días</dt><dd class="col-6 text-end tabular" id="resDias">—</dd>
+                    </dl>
+                    <hr />
+                    <div class="text-muted small">Total estimado</div>
+                    <div class="total-big mb-1" id="resTotal" aria-live="polite">$0.00</div>
+                    <p class="small text-muted">Se cobra el precio vigente de cada artículo; el total lo calcula la base de datos (RN-06, RN-07).</p>
+                    <div class="alert alert-warning small py-2 d-none" id="alertaExceso" role="alert"><i class="bi bi-exclamation-triangle me-1"></i>Hay renglones que piden más piezas de las disponibles. La base de datos rechazará la reservación.</div>
+                    <button class="btn btn-primary w-100" type="submit"><i class="bi bi-check2-circle"></i>Confirmar reservación</button>
+                    <a class="btn btn-link w-100 mt-1" asp-page="Index">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        (function () {
+            const cont = document.getElementById('renglones');
+            const inicio = document.getElementById('Inicio');
+            const fin = document.getElementById('Fin');
+            const estado = document.getElementById('estadoDisp');
+            const moneda = florecitas.moneda;
+            let disponibilidad = {};
+
+            function dias() {
+                if (!inicio.value || !fin.value) return 0;
+                const d = (new Date(fin.value) - new Date(inicio.value)) / 86400000 + 1;
+                return d > 0 ? d : 0;
+            }
+
+            function renumerar() {
+                cont.querySelectorAll('.renglon').forEach((r, i) => {
+                    const s = r.querySelector('.sel-articulo'), c = r.querySelector('.inp-cantidad');
+                    s.name = `Renglones[${i}].IdArticulo`; s.id = `art-${i}`; r.querySelector('label[for^=art]').htmlFor = s.id;
+                    c.name = `Renglones[${i}].Cantidad`; c.id = `cant-${i}`; r.querySelector('label[for^=cant]').htmlFor = c.id;
+                });
+            }
+
+            function recalcular() {
+                const nd = dias();
+                document.getElementById('diasRenta').textContent = nd > 0 ? nd + (nd === 1 ? ' día' : ' días') : 'Fechas inválidas';
+                document.getElementById('resDias').textContent = nd || '—';
+                let porDia = 0, piezas = 0, articulos = 0, exceso = false;
+                const usados = new Set();
+                cont.querySelectorAll('.renglon').forEach(r => {
+                    const s = r.querySelector('.sel-articulo');
+                    const cant = parseInt(r.querySelector('.inp-cantidad').value, 10) || 0;
+                    const opt = s.selectedOptions[0];
+                    const precio = opt && opt.dataset.precio ? parseFloat(opt.dataset.precio) : 0;
+                    const disp = s.value && disponibilidad[s.value] !== undefined ? disponibilidad[s.value] : null;
+                    const elDisp = r.querySelector('.disp'), elSub = r.querySelector('.sub');
+                    elDisp.textContent = disp === null ? '—' : disp + ' libres';
+                    const excede = disp !== null && cant > disp;
+                    const repetido = s.value && usados.has(s.value);
+                    if (s.value) usados.add(s.value);
+                    elDisp.className = 'disp ' + (excede ? 'text-danger fw-bold' : disp === 0 ? 'text-danger' : 'text-muted');
+                    r.querySelector('.inp-cantidad').classList.toggle('is-invalid', excede);
+                    s.classList.toggle('is-invalid', !!repetido);
+                    exceso = exceso || excede;
+                    const sub = cant * precio * nd;
+                    elSub.textContent = s.value && cant ? moneda.format(sub) : '—';
+                    if (s.value && cant > 0) { porDia += cant * precio; piezas += cant; articulos++; }
+                });
+                document.getElementById('resArticulos').textContent = articulos;
+                document.getElementById('resPiezas').textContent = piezas.toLocaleString('es-MX');
+                document.getElementById('resDia').textContent = moneda.format(porDia);
+                document.getElementById('resTotal').textContent = moneda.format(porDia * nd);
+                document.getElementById('alertaExceso').classList.toggle('d-none', !exceso);
+            }
+
+            let pendiente;
+            async function consultarDisponibilidad() {
+                if (!inicio.value || !fin.value || dias() <= 0) { disponibilidad = {}; recalcular(); return; }
+                estado.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Consultando disponibilidad…';
+                const ctrl = new AbortController(); pendiente && pendiente.abort(); pendiente = ctrl;
+                try {
+                    const r = await fetch(`/Disponibilidad?handler=Json&inicio=${inicio.value}&fin=${fin.value}`, { signal: ctrl.signal });
+                    const data = await r.json();
+                    if (!r.ok) throw new Error(data.error || 'Error');
+                    disponibilidad = {};
+                    data.forEach(d => disponibilidad[d.idArticulo] = d.disponible);
+                    estado.innerHTML = '<i class="bi bi-check2-circle text-success"></i> Disponibilidad al ' + new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+                } catch (e) {
+                    if (e.name === 'AbortError') return;
+                    disponibilidad = {};
+                    estado.innerHTML = '<i class="bi bi-exclamation-triangle text-danger"></i> ' + e.message;
+                }
+                recalcular();
+            }
+
+            document.getElementById('btnAgregar').addEventListener('click', () => {
+                const base = cont.querySelector('.renglon');
+                const nuevo = base.cloneNode(true);
+                nuevo.querySelector('.sel-articulo').value = '';
+                nuevo.querySelector('.inp-cantidad').value = '';
+                cont.appendChild(nuevo);
+                renumerar(); recalcular();
+                nuevo.querySelector('.sel-articulo').focus();
+            });
+
+            cont.addEventListener('click', e => {
+                const b = e.target.closest('.btn-quitar');
+                if (!b) return;
+                const filas = cont.querySelectorAll('.renglon');
+                if (filas.length === 1) { filas[0].querySelector('.sel-articulo').value = ''; filas[0].querySelector('.inp-cantidad').value = ''; }
+                else b.closest('.renglon').remove();
+                renumerar(); recalcular();
+            });
+            cont.addEventListener('input', recalcular);
+            cont.addEventListener('change', recalcular);
+            inicio.addEventListener('change', () => { if (fin.value < inicio.value) fin.value = inicio.value; consultarDisponibilidad(); });
+            fin.addEventListener('change', consultarDisponibilidad);
+
+            consultarDisponibilidad();
+        })();
+    </script>
+}

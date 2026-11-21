@@ -1,0 +1,63 @@
+@page "{id:int}"
+@model Florecitas.Rentas.Web.Pages.Clientes.DetalleModel
+@{
+    ViewData["Title"] = Model.C.NombreCompleto;
+    var efectivas = Model.Historial.Where(h => h.Estado != "Cancelada").ToList();
+}
+<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a asp-page="Index">Clientes</a></li><li class="breadcrumb-item active" aria-current="page">@Model.C.NombreCompleto</li></ol></nav>
+<partial name="_Errores" />
+@if (!Model.SinConexion)
+{
+<div class="page-header">
+    <div class="d-flex align-items-center gap-3">
+        <span class="avatar" style="width:56px;height:56px;font-size:1.2rem" aria-hidden="true">@(Model.C.Nombre.Length > 0 ? Model.C.Nombre[..1] : "")@(Model.C.Apellidos.Length > 0 ? Model.C.Apellidos[..1] : "")</span>
+        <div>
+            <h1>@Model.C.NombreCompleto</h1>
+            <p><i class="bi bi-telephone me-1"></i>@Model.C.Telefono · <i class="bi bi-envelope mx-1"></i>@Model.C.Correo @if (Model.C.Direccion is not null) { <span>· <i class="bi bi-geo-alt mx-1"></i>@Model.C.Direccion</span> }</p>
+        </div>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary" asp-page="/Reservaciones/Nueva" asp-route-idCliente="@Model.C.IdCliente"><i class="bi bi-journal-plus"></i>Nueva reservación</a>
+        <a class="btn btn-soft" asp-page="Editar" asp-route-id="@Model.C.IdCliente"><i class="bi bi-pencil"></i>Editar</a>
+        <form method="post" asp-page-handler="Eliminar" asp-route-id="@Model.C.IdCliente" data-confirmar="¿Eliminar este cliente? Solo es posible si no tiene reservaciones (RN-11).">
+            <button class="btn btn-soft text-danger" type="submit"><i class="bi bi-trash3"></i>Eliminar</button>
+        </form>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-3"><div class="card kpi"><div><div class="kpi-label">Reservaciones</div><div class="kpi-value">@Model.Historial.Count</div></div></div></div>
+    <div class="col-6 col-md-3"><div class="card kpi"><div><div class="kpi-label">Gasto total</div><div class="kpi-value">@efectivas.Sum(h => h.Total).ToString("C0")</div></div></div></div>
+    <div class="col-6 col-md-3"><div class="card kpi"><div><div class="kpi-label">Piezas rentadas</div><div class="kpi-value">@efectivas.Sum(h => h.Piezas).ToString("N0")</div></div></div></div>
+    <div class="col-6 col-md-3"><div class="card kpi"><div><div class="kpi-label">Última renta</div><div class="kpi-value fs-5">@(efectivas.Count > 0 ? efectivas.Max(h => h.FechaInicio).ToString("dd MMM yyyy") : "—")</div></div></div></div>
+</div>
+
+<div class="card">
+    <div class="card-header">Historial de reservaciones</div>
+    @if (Model.Historial.Count == 0)
+    {
+        <partial name="_Vacio" model='new EstadoVacio("bi-journal", "Sin reservaciones", "Este cliente todavía no ha rentado. Puedes crearle su primera reservación.", "Nueva reservación", $"/Reservaciones/Nueva?idCliente={Model.C.IdCliente}")' />
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead><tr><th>Folio</th><th>Fechas</th><th>Lugar</th><th class="text-end">Piezas</th><th class="text-end">Total</th><th>Estado</th></tr></thead>
+                <tbody>
+                @foreach (var r in Model.Historial)
+                {
+                    <tr data-href="/Reservaciones/Detalle/@r.IdReservacion">
+                        <td class="fw-bold">#@r.IdReservacion</td>
+                        <td class="tabular">@r.FechaInicio.ToString("dd MMM yyyy") <span class="small text-muted">· @r.Dias d</span></td>
+                        <td class="small text-muted">@r.LugarEvento</td>
+                        <td class="text-end tabular">@r.Piezas</td>
+                        <td class="text-end tabular fw-semibold">@r.Total.ToString("C")</td>
+                        <td><partial name="_Estado" model="r.Estado" /></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+}

@@ -1,0 +1,70 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Categorias.IndexModel
+@{
+    ViewData["Title"] = "Categorías";
+}
+<div class="page-header">
+    <div><h1>Categorías</h1><p>Agrupan el catálogo para buscar y filtrar. Una categoría con artículos no se puede eliminar.</p></div>
+</div>
+
+<partial name="_Errores" />
+
+<div class="row g-4">
+    <div class="col-12 col-lg-4 order-lg-2">
+        <div class="card sticky-summary">
+            <div class="card-header">@(Model.Editando ? "Editar categoría" : "Nueva categoría")</div>
+            <div class="card-body">
+                <form method="post" asp-page-handler="Guardar" novalidate>
+                    <input type="hidden" asp-for="Form.IdCategoria" />
+                    <div class="mb-3">
+                        <label asp-for="Form.Nombre" class="form-label required"></label>
+                        <input asp-for="Form.Nombre" class="form-control" placeholder="Ej. Vajilla" />
+                        <span asp-validation-for="Form.Nombre"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Form.Descripcion" class="form-label"></label>
+                        <textarea asp-for="Form.Descripcion" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Form.Descripcion"></span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        @if (Model.Editando) { <a class="btn btn-soft" asp-page="Index">Cancelar</a> }
+                        <button class="btn btn-primary flex-grow-1" type="submit"><i class="bi bi-check2"></i>@(Model.Editando ? "Guardar cambios" : "Crear categoría")</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-8 order-lg-1">
+        <div class="card">
+            @if (Model.Categorias.Count == 0 && !Model.SinConexion)
+            {
+                <partial name="_Vacio" model='new EstadoVacio("bi-tags", "Sin categorías", "Crea la primera categoría con el formulario.")' />
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead><tr><th>Nombre</th><th>Descripción</th><th class="text-end">Artículos</th><th class="text-end"><span class="visually-hidden">Acciones</span></th></tr></thead>
+                        <tbody>
+                        @foreach (var c in Model.Categorias)
+                        {
+                            <tr class="@(Model.Form.IdCategoria == c.IdCategoria ? "table-active" : "")">
+                                <td class="fw-semibold">@c.Nombre</td>
+                                <td class="small text-muted">@c.Descripcion</td>
+                                <td class="text-end"><a asp-page="/Articulos/Index" asp-route-IdCategoria="@c.IdCategoria" class="chip text-decoration-none">@c.Articulos</a></td>
+                                <td class="text-end text-nowrap">
+                                    <a class="btn btn-sm btn-soft btn-icon" asp-page="Index" asp-route-editar="@c.IdCategoria" aria-label="Editar @c.Nombre" title="Editar"><i class="bi bi-pencil"></i></a>
+                                    <form method="post" asp-page-handler="Eliminar" asp-route-id="@c.IdCategoria" class="d-inline" data-confirmar="¿Eliminar la categoría @c.Nombre?">
+                                        <button class="btn btn-sm btn-soft btn-icon" type="submit" aria-label="Eliminar @c.Nombre" title="@(c.Articulos > 0 ? "Tiene artículos: la base de datos lo impedirá" : "Eliminar")"><i class="bi bi-trash3"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

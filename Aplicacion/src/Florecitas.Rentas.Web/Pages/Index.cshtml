@@ -1,0 +1,209 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Tablero";
+    var hora = DateTime.Now.Hour;
+    var saludo = hora < 12 ? "Buenos días" : hora < 19 ? "Buenas tardes" : "Buenas noches";
+    var maxIngreso = Model.TopArticulos.Count > 0 ? Model.TopArticulos.Max(a => a.IngresoGenerado) : 1;
+}
+
+<div class="page-header">
+    <div>
+        <h1>@saludo, @User.Identity?.Name?.Split(' ')[0]</h1>
+        <p>Esto es lo que pasa hoy con tu inventario y tus reservaciones.</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-soft" asp-page="/Disponibilidad"><i class="bi bi-calendar2-check"></i>Consultar disponibilidad</a>
+    </div>
+</div>
+
+<partial name="_Errores" />
+
+@if (!Model.SinConexion)
+{
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-sm-6 col-xl-3">
+            <a class="card kpi text-decoration-none text-reset" asp-page="/Reservaciones/Index" asp-route-Estado="Confirmada">
+                <span class="kpi-icon tone-info"><i class="bi bi-calendar-event"></i></span>
+                <div>
+                    <div class="kpi-label">Reservaciones confirmadas</div>
+                    <div class="kpi-value">@Model.Kpi.Confirmadas</div>
+                    <div class="kpi-foot">@Model.Kpi.EntregasProximos7 por entregar en 7 días</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <a class="card kpi text-decoration-none text-reset" asp-page="/Reservaciones/Index" asp-route-Estado="Entregada">
+                <span class="kpi-icon tone-warning"><i class="bi bi-truck"></i></span>
+                <div>
+                    <div class="kpi-label">Rentas en curso</div>
+                    <div class="kpi-value">@Model.Kpi.EnCurso</div>
+                    <div class="kpi-foot">@Model.Kpi.PiezasFueraHoy.ToString("N0") piezas fuera del almacén</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card kpi">
+                <span class="kpi-icon @(Model.Kpi.DevolucionesAtrasadas > 0 ? "tone-danger" : "tone-success")"><i class="bi bi-arrow-return-left"></i></span>
+                <div>
+                    <div class="kpi-label">Devoluciones atrasadas</div>
+                    <div class="kpi-value">@Model.Kpi.DevolucionesAtrasadas</div>
+                    <div class="kpi-foot">@(Model.Kpi.DevolucionesAtrasadas > 0 ? "Llama a estos clientes hoy" : "Todo regresó a tiempo")</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <a class="card kpi text-decoration-none text-reset" asp-page="/Reportes/Index">
+                <span class="kpi-icon tone-accent"><i class="bi bi-cash-coin"></i></span>
+                <div>
+                    <div class="kpi-label">Ingresos del mes</div>
+                    <div class="kpi-value">@Model.Kpi.IngresosMes.ToString("C0")</div>
+                    <div class="kpi-foot">@Model.Kpi.IngresosComprometidos.ToString("C0") comprometidos a futuro</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-xl-7">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-list-check me-2"></i>Agenda de los próximos 14 días</span>
+                    <span class="chip">@Model.Agenda.Count pendiente(s)</span>
+                </div>
+                @if (Model.Agenda.Count == 0)
+                {
+                    <partial name="_Vacio" model='new EstadoVacio("bi-cup-hot", "Sin pendientes", "No hay entregas ni devoluciones programadas en las próximas dos semanas.")' />
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead><tr><th>Pendiente</th><th>Cuándo</th><th>Cliente</th><th class="d-none d-md-table-cell">Lugar</th></tr></thead>
+                            <tbody>
+                            @foreach (var a in Model.Agenda)
+                            {
+                                var atrasada = a.DiasRestantes < 0;
+                                <tr data-href="/Reservaciones/Detalle/@a.IdReservacion">
+                                    <td>
+                                        <span class="chip @(a.Pendiente == "Entrega" ? "tone-info" : atrasada ? "tone-danger" : "tone-warning")">
+                                            <i class="bi @(a.Pendiente == "Entrega" ? "bi-box-arrow-up-right" : "bi-box-arrow-in-down-left")"></i>@a.Pendiente
+                                        </span>
+                                        <div class="small text-muted mt-1">#@a.IdReservacion</div>
+                                    </td>
+                                    <td class="tabular">
+                                        <div class="fw-semibold">@a.FechaCompromiso.ToString("ddd dd MMM")</div>
+                                        <div class="small @(atrasada ? "text-danger fw-semibold" : "text-muted")">
+                                            @(a.DiasRestantes == 0 ? "Hoy" : a.DiasRestantes == 1 ? "Mañana" : atrasada ? $"{-a.DiasRestantes} día(s) de retraso" : $"En {a.DiasRestantes} días")
+                                        </div>
+                                    </td>
+                                    <td><div class="fw-semibold">@a.Cliente</div><div class="small text-muted">@a.Telefono</div></td>
+                                    <td class="d-none d-md-table-cell small text-muted">@a.LugarEvento</td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-12 col-xl-5">
+            <div class="card h-100">
+                <div class="card-header"><i class="bi bi-graph-up-arrow me-2"></i>Ingresos de los últimos 6 meses</div>
+                <div class="card-body">
+                    @if (Model.Ingresos.Count == 0)
+                    {
+                        <partial name="_Vacio" model='new EstadoVacio("bi-bar-chart", "Aún no hay ingresos", "Los ingresos aparecen cuando se entregan rentas.")' />
+                    }
+                    else
+                    {
+                        <div class="chart-box"><canvas id="graficaIngresos" aria-label="Gráfica de ingresos por mes" role="img"></canvas></div>
+                        <table class="visually-hidden">
+                            <caption>Ingresos por mes</caption>
+                            @foreach (var i in Model.Ingresos) { <tr><td>@i.Mes</td><td>@i.Ingresos.ToString("C")</td></tr> }
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 col-lg-6">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between"><span><i class="bi bi-trophy me-2"></i>Artículos que más generan</span><a class="small" asp-page="/Reportes/Index" asp-route-tab="articulos">Ver reporte</a></div>
+                <div class="card-body">
+                    @foreach (var a in Model.TopArticulos)
+                    {
+                        var pct = maxIngreso == 0 ? 0 : (int)(100 * a.IngresoGenerado / maxIngreso);
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span class="fw-semibold">@a.Articulo <span class="text-muted fw-normal">· @a.Categoria</span></span>
+                                <span class="tabular">@a.IngresoGenerado.ToString("C0")</span>
+                            </div>
+                            <div class="meter"><span style="width:@pct%;background:var(--color-primary)"></span></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="card h-100">
+                <div class="card-header d-flex justify-content-between"><span><i class="bi bi-boxes me-2"></i>Lo más comprometido hoy</span><a class="small" asp-page="/Disponibilidad">Ver todo</a></div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead><tr><th>Artículo</th><th class="text-end">Libres</th><th style="width:35%">Disponibilidad</th></tr></thead>
+                        <tbody>
+                        @foreach (var d in Model.OcupacionHoy)
+                        {
+                            <tr>
+                                <td><div class="fw-semibold">@d.Nombre</div><div class="small text-muted">@d.Categoria</div></td>
+                                <td class="text-end tabular">@d.Disponible / @d.CantidadTotal</td>
+                                <td><div class="meter @(d.Disponible <= 0 ? "none" : d.PorcentajeLibre < 30 ? "low" : "")"><span style="width:@d.PorcentajeLibre%"></span></div></td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/lib/chartjs/chart.umd.min.js"></script>
+    <script>
+        (function () {
+            const el = document.getElementById('graficaIngresos');
+            if (!el) return;
+            const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+            const datos = @Json.Serialize(Model.Ingresos.Select(i => new { i.Mes, i.Ingresos, i.Rentas }));
+            let grafica;
+            function dibujar() {
+                const c = florecitas.colores();
+                grafica && grafica.destroy();
+                grafica = new Chart(el, {
+                    type: 'bar',
+                    data: {
+                        labels: datos.map(d => { const [a, m] = d.mes.split('-'); return meses[+m - 1] + ' ' + a.slice(2); }),
+                        datasets: [{ label: 'Ingresos', data: datos.map(d => d.ingresos), backgroundColor: c.primary, borderRadius: 8, maxBarThickness: 42 }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        animation: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : { duration: 400 },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { callbacks: { label: ctx => florecitas.moneda.format(ctx.parsed.y) + ' · ' + datos[ctx.dataIndex].rentas + ' renta(s)' } }
+                        },
+                        scales: {
+                            x: { grid: { display: false }, ticks: { color: c.muted } },
+                            y: { grid: { color: c.border }, ticks: { color: c.muted, callback: v => florecitas.moneda.format(v).replace('.00', '') } }
+                        }
+                    }
+                });
+            }
+            dibujar();
+            document.addEventListener('tema-cambiado', dibujar);
+        })();
+    </script>
+}

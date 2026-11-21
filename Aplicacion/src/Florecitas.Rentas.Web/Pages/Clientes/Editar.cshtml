@@ -1,0 +1,49 @@
+@page "{id:int?}"
+@model Florecitas.Rentas.Web.Pages.Clientes.EditarModel
+@{
+    ViewData["Title"] = Model.EsNuevo ? "Nuevo cliente" : "Editar cliente";
+}
+<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a asp-page="Index">Clientes</a></li><li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li></ol></nav>
+<div class="page-header"><div><h1>@ViewData["Title"]</h1><p>Los campos marcados con * son obligatorios. El correo no se puede repetir (RN-12).</p></div></div>
+
+<partial name="_Errores" />
+
+<div class="card" style="max-width:820px">
+    <div class="card-body">
+        <form method="post" novalidate class="row g-3">
+            <input type="hidden" asp-for="Form.IdCliente" />
+            <input type="hidden" asp-for="Volver" />
+            <div class="col-md-6">
+                <label asp-for="Form.Nombre" class="form-label required"></label>
+                <input asp-for="Form.Nombre" class="form-control" autocomplete="given-name" />
+                <span asp-validation-for="Form.Nombre"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Apellidos" class="form-label required"></label>
+                <input asp-for="Form.Apellidos" class="form-control" autocomplete="family-name" />
+                <span asp-validation-for="Form.Apellidos"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Telefono" class="form-label required"></label>
+                <input asp-for="Form.Telefono" class="form-control tabular" inputmode="numeric" maxlength="10" placeholder="6461234567" autocomplete="tel" />
+                <div class="form-text">10 dígitos, sin espacios.</div>
+                <span asp-validation-for="Form.Telefono"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Correo" class="form-label required"></label>
+                <input asp-for="Form.Correo" class="form-control" type="email" autocomplete="email" />
+                <span asp-validation-for="Form.Correo"></span>
+            </div>
+            <div class="col-12">
+                <label asp-for="Form.Direccion" class="form-label"></label>
+                <input asp-for="Form.Direccion" class="form-control" autocomplete="street-address" />
+                <span asp-validation-for="Form.Direccion"></span>
+            </div>
+            <div class="col-12 d-flex gap-2 justify-content-end">
+                <a class="btn btn-soft" asp-page="Index">Cancelar</a>
+                <button class="btn btn-primary" type="submit"><i class="bi bi-check2"></i>@(Model.EsNuevo ? "Registrar cliente" : "Guardar cambios")</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

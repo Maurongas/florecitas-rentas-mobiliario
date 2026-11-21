@@ -1,0 +1,86 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Bitacora.IndexModel
+@{
+    ViewData["Title"] = "Auditoría";
+    string Tono(string a) => a switch { "INSERT" => "tone-success", "DELETE" => "tone-danger", "ESTADO" => "tone-info", _ => "tone-warning" };
+}
+<div class="page-header">
+    <div><h1>Auditoría</h1><p>Registros escritos exclusivamente por los triggers de la base de datos; la aplicación solo los consulta.</p></div>
+</div>
+
+<partial name="_Errores" />
+
+<div class="row g-4">
+    <div class="col-12 col-xl-8">
+        <div class="card">
+            <div class="card-header">
+                <form method="get" class="row g-2 align-items-center">
+                    <div class="col-auto fw-semibold me-auto"><i class="bi bi-shield-check me-2"></i>Bitácora (últimos 200)</div>
+                    <div class="col-6 col-md-auto">
+                        <label class="visually-hidden" for="bTabla">Tabla</label>
+                        <select id="bTabla" class="form-select form-select-sm" name="Tabla" onchange="this.form.submit()">
+                            <option value="">Todas las tablas</option>
+                            @foreach (var t in new[] { "reservacion", "articulo", "cliente" }) { <option value="@t" selected="@(Model.Tabla == t)">@t</option> }
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-auto">
+                        <label class="visually-hidden" for="bAccion">Acción</label>
+                        <select id="bAccion" class="form-select form-select-sm" name="Accion" onchange="this.form.submit()">
+                            <option value="">Todas las acciones</option>
+                            @foreach (var a in new[] { "INSERT", "UPDATE", "ESTADO", "DELETE" }) { <option value="@a" selected="@(Model.Accion == a)">@a</option> }
+                        </select>
+                    </div>
+                    <noscript><div class="col-auto"><button class="btn btn-sm btn-primary">Filtrar</button></div></noscript>
+                </form>
+            </div>
+            @if (Model.Registros.Count == 0 && !Model.SinConexion)
+            {
+                <partial name="_Vacio" model='new EstadoVacio("bi-shield", "Sin registros", "No hay eventos de auditoría con esos filtros.")' />
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead><tr><th>Fecha</th><th>Acción</th><th>Tabla / id</th><th>Detalle</th><th>Empleado</th></tr></thead>
+                        <tbody>
+                        @foreach (var b in Model.Registros)
+                        {
+                            <tr data-href="@(b.Tabla == "reservacion" && b.Accion != "DELETE" ? $"/Reservaciones/Detalle/{b.IdRegistro}" : null)">
+                                <td class="tabular small text-nowrap">@b.Fecha.ToString("dd/MM/yy HH:mm")</td>
+                                <td><span class="chip @Tono(b.Accion)">@b.Accion</span></td>
+                                <td class="small"><code>@b.Tabla</code> #@b.IdRegistro</td>
+                                <td class="small">@b.Detalle</td>
+                                <td class="small text-muted">@(b.Empleado ?? "Carga inicial")<div class="text-muted" style="font-size:.75rem">@b.UsuarioBd</div></td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-12 col-xl-4">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-tag me-2"></i>Historial de precios</div>
+            @if (Model.Precios.Count == 0)
+            {
+                <partial name="_Vacio" model='new EstadoVacio("bi-tag", "Sin cambios de precio", "Aquí aparecerán los cambios registrados por trg_articulo_au.")' />
+            }
+            else
+            {
+                <ul class="list-group list-group-flush">
+                    @foreach (var p in Model.Precios)
+                    {
+                        <li class="list-group-item bg-transparent">
+                            <div class="fw-semibold">@p.Articulo</div>
+                            <div class="d-flex justify-content-between small">
+                                <span><span class="text-muted text-decoration-line-through">@p.PrecioAnterior.ToString("C")</span> → <strong>@p.PrecioNuevo.ToString("C")</strong></span>
+                                <span class="text-muted">@p.FechaCambio.ToString("dd/MM/yy")</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

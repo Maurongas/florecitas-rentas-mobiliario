@@ -1,0 +1,72 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Cuenta.LoginModel
+@{
+    ViewData["Title"] = "Iniciar sesión";
+    Layout = "_LayoutSimple";
+}
+<div class="login-wrap">
+    <section class="login-art" aria-hidden="true">
+        <span class="petal" style="width:340px;height:340px;right:-90px;top:-80px"></span>
+        <span class="petal" style="width:220px;height:220px;left:-60px;bottom:120px"></span>
+        <div class="d-flex align-items-center gap-2 position-relative">
+            <span class="brand-mark" style="background:rgba(255,255,255,.18)"><i class="bi bi-flower1"></i></span>
+            <strong class="fs-5">Florecitas</strong>
+        </div>
+        <div class="position-relative">
+            <h2>Ninguna silla de más, ninguna fiesta sin mesa.</h2>
+            <p class="fs-5 opacity-75 mb-4">Inventario y reservaciones por fecha en un solo lugar: el sistema impide comprometer más piezas de las que tienes.</p>
+            <div class="d-flex gap-4 flex-wrap">
+                <div><div class="fs-3 fw-bold">RN-03</div><div class="small opacity-75">Sin sobreventa</div></div>
+                <div><div class="fs-3 fw-bold">100%</div><div class="small opacity-75">Entregas y devoluciones registradas</div></div>
+            </div>
+        </div>
+        <small class="opacity-75 position-relative">UABC · FIAD · Equipo Florecitas</small>
+    </section>
+
+    <section class="login-form">
+        <div class="login-card">
+            <div class="d-lg-none text-center mb-4">
+                <span class="brand-mark mx-auto mb-2"><i class="bi bi-flower1"></i></span>
+                <strong class="fs-4">Florecitas</strong>
+            </div>
+            <h1 class="h3 mb-1">Bienvenido de nuevo</h1>
+            <p class="text-muted mb-4">Inicia sesión con tu usuario de empleado.</p>
+
+            <partial name="_Errores" />
+
+            <form method="post" novalidate>
+                <input type="hidden" asp-for="ReturnUrl" />
+                <div class="mb-3">
+                    <label asp-for="Usuario" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
+                        <input asp-for="Usuario" class="form-control" autocomplete="username" autofocus />
+                    </div>
+                    <span asp-validation-for="Usuario"></span>
+                </div>
+                <div class="mb-4">
+                    <label asp-for="Contrasena" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent"><i class="bi bi-lock"></i></span>
+                        <input asp-for="Contrasena" class="form-control" autocomplete="current-password" id="pwd" />
+                        <button class="btn btn-soft" type="button" id="verPwd" aria-label="Mostrar contraseña"><i class="bi bi-eye"></i></button>
+                    </div>
+                    <span asp-validation-for="Contrasena"></span>
+                </div>
+                <button class="btn btn-primary w-100" type="submit"><i class="bi bi-box-arrow-in-right"></i>Entrar</button>
+            </form>
+            <p class="small text-muted mt-4 mb-0"><i class="bi bi-shield-lock"></i> Las contraseñas se guardan cifradas (PBKDF2-SHA256). La conexión a la base de datos vive solo en el servidor.</p>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    <script>
+        document.getElementById('verPwd').addEventListener('click', function () {
+            var i = document.getElementById('pwd');
+            var ver = i.type === 'password';
+            i.type = ver ? 'text' : 'password';
+            this.innerHTML = ver ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+            this.setAttribute('aria-label', ver ? 'Ocultar contraseña' : 'Mostrar contraseña');
+        });
+    </script>
+}

@@ -1,0 +1,57 @@
+@page "{id:int?}"
+@model Florecitas.Rentas.Web.Pages.Empleados.EditarModel
+@{
+    ViewData["Title"] = Model.EsNuevo ? "Nuevo empleado" : "Editar empleado";
+}
+<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a asp-page="Index">Empleados</a></li><li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li></ol></nav>
+<div class="page-header"><div><h1>@ViewData["Title"]</h1><p>El usuario no se puede repetir y la contraseña se guarda cifrada (RN-12).</p></div></div>
+
+<partial name="_Errores" />
+
+<div class="card" style="max-width:820px">
+    <div class="card-body">
+        <form method="post" novalidate class="row g-3" autocomplete="off">
+            <input type="hidden" asp-for="Form.IdEmpleado" />
+            <div class="col-md-6">
+                <label asp-for="Form.Nombre" class="form-label required"></label>
+                <input asp-for="Form.Nombre" class="form-control" />
+                <span asp-validation-for="Form.Nombre"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Usuario" class="form-label required"></label>
+                <input asp-for="Form.Usuario" class="form-control" placeholder="nombre.apellido" autocomplete="off" />
+                <span asp-validation-for="Form.Usuario"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Rol" class="form-label required"></label>
+                <select asp-for="Form.Rol" class="form-select">
+                    <option value="Encargado">Encargado</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+                <span asp-validation-for="Form.Rol"></span>
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+                <div class="form-check form-switch mb-2">
+                    <input asp-for="Form.Activo" class="form-check-input" role="switch" />
+                    <label asp-for="Form.Activo" class="form-check-label">Puede iniciar sesión</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Contrasena" class="form-label @(Model.EsNuevo ? "required" : "")"></label>
+                <input asp-for="Form.Contrasena" class="form-control" autocomplete="new-password" />
+                <div class="form-text">@(Model.EsNuevo ? "Mínimo 8 caracteres con letras y números." : "Déjala vacía para conservar la actual.")</div>
+                <span asp-validation-for="Form.Contrasena"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Confirmar" class="form-label"></label>
+                <input asp-for="Form.Confirmar" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="Form.Confirmar"></span>
+            </div>
+            <div class="col-12 d-flex gap-2 justify-content-end">
+                <a class="btn btn-soft" asp-page="Index">Cancelar</a>
+                <button class="btn btn-primary" type="submit"><i class="bi bi-check2"></i>Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

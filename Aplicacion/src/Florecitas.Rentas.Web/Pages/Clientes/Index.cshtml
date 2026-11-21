@@ -1,0 +1,70 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Clientes.IndexModel
+@{
+    ViewData["Title"] = "Clientes";
+}
+<div class="page-header">
+    <div>
+        <h1>Clientes</h1>
+        <p>Personas y empresas que rentan mobiliario, con su historial y gasto acumulado.</p>
+    </div>
+    <a class="btn btn-primary" asp-page="Editar"><i class="bi bi-person-plus"></i>Nuevo cliente</a>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="get" class="d-flex gap-2" role="search">
+            <label class="visually-hidden" for="buscarCliente">Buscar cliente</label>
+            <input id="buscarCliente" class="form-control" name="Buscar" value="@Model.Buscar" placeholder="Nombre, correo o teléfono" />
+            <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i><span class="d-none d-sm-inline">Buscar</span></button>
+            @if (!string.IsNullOrWhiteSpace(Model.Buscar)) { <a class="btn btn-soft" asp-page="Index">Limpiar</a> }
+        </form>
+    </div>
+</div>
+
+<partial name="_Errores" />
+
+<div class="card">
+    @if (Model.Resultado.Elementos.Count == 0 && !Model.SinConexion)
+    {
+        @if (!string.IsNullOrWhiteSpace(Model.Buscar))
+        {
+            <partial name="_Vacio" model='new EstadoVacio("bi-search", "Sin coincidencias", $"No hay clientes que coincidan con “{Model.Buscar}”.", "Registrar cliente", "/Clientes/Editar")' />
+        }
+        else
+        {
+            <partial name="_Vacio" model='new EstadoVacio("bi-people", "Aún no hay clientes", "Registra a tu primer cliente para poder hacer reservaciones.", "Nuevo cliente", "/Clientes/Editar")' />
+        }
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead><tr><th>Cliente</th><th>Contacto</th><th class="text-end">Reservaciones</th><th class="text-end">Gasto acumulado</th><th class="text-end"><span class="visually-hidden">Acciones</span></th></tr></thead>
+                <tbody>
+                @foreach (var c in Model.Resultado.Elementos)
+                {
+                    <tr data-href="/Clientes/Detalle/@c.IdCliente">
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="avatar" aria-hidden="true">@c.Nombre[..1]@c.Apellidos[..1]</span>
+                                <div><div class="fw-semibold">@c.NombreCompleto</div><div class="small text-muted text-truncate" style="max-width:260px">@(c.Direccion ?? "Sin dirección")</div></div>
+                            </div>
+                        </td>
+                        <td class="small"><div><i class="bi bi-telephone me-1 text-muted"></i>@c.Telefono</div><div><i class="bi bi-envelope me-1 text-muted"></i>@c.Correo</div></td>
+                        <td class="text-end tabular">@c.Reservaciones</td>
+                        <td class="text-end tabular fw-semibold">@c.GastoTotal.ToString("C")</td>
+                        <td class="text-end text-nowrap">
+                            <a class="btn btn-sm btn-soft btn-icon" asp-page="Editar" asp-route-id="@c.IdCliente" aria-label="Editar @c.NombreCompleto" title="Editar"><i class="bi bi-pencil"></i></a>
+                            <form method="post" asp-page-handler="Eliminar" asp-route-id="@c.IdCliente" asp-route-Buscar="@Model.Buscar" class="d-inline" data-confirmar="¿Eliminar a @c.NombreCompleto? Solo es posible si no tiene reservaciones.">
+                                <button class="btn btn-sm btn-soft btn-icon" type="submit" aria-label="Eliminar @c.NombreCompleto" title="Eliminar"><i class="bi bi-trash3"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <partial name="_Paginacion" model="(Model.Resultado.NumeroPagina, Model.Resultado.TotalPaginas, Model.Resultado.Total)" />
+    }
+</div>

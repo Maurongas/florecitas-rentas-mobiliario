@@ -1,0 +1,183 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Reportes.IndexModel
+@{
+    ViewData["Title"] = "Reportes";
+    var tabs = new[] { ("ingresos", "Ingresos por mes", "bi-graph-up"), ("articulos", "Desempeño de artículos", "bi-box-seam"), ("faltantes", "Faltantes y daños", "bi-exclamation-diamond"), ("clientes", "Clientes frecuentes", "bi-stars") };
+    string CsvUrl() { var q = System.Web.HttpUtility.ParseQueryString(ViewContext.HttpContext.Request.QueryString.Value ?? ""); q["handler"] = "Csv"; q["Tab"] = Model.Tab; return "?" + q; }
+}
+<div class="page-header">
+    <div><h1>Reportes</h1><p>Consultas multitabla y vistas de la base de datos, con filtros y exportación.</p></div>
+    <a class="btn btn-soft" href="@CsvUrl()"><i class="bi bi-filetype-csv"></i>Exportar CSV</a>
+</div>
+
+<ul class="nav nav-pills gap-2 mb-3 flex-nowrap overflow-auto pb-1" role="tablist">
+    @foreach (var (clave, texto, icono) in tabs)
+    {
+        <li class="nav-item"><a class="nav-link text-nowrap @(Model.Tab == clave ? "active" : "")" style="@(Model.Tab == clave ? "background:var(--color-primary)" : "color:var(--color-foreground)")" asp-page="Index" asp-route-Tab="@clave" aria-current="@(Model.Tab == clave ? "page" : null)"><i class="bi @icono me-1"></i>@texto</a></li>
+    }
+</ul>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="get" class="row g-3 align-items-end">
+            <input type="hidden" name="Tab" value="@Model.Tab" />
+            @if (Model.Tab is "ingresos" or "faltantes")
+            {
+                <div class="col-6 col-md-3"><label class="form-label" for="rDesde">Desde</label><input id="rDesde" class="form-control" type="date" name="Desde" value="@Model.Desde?.ToString("yyyy-MM-dd")" /></div>
+                <div class="col-6 col-md-3"><label class="form-label" for="rHasta">Hasta</label><input id="rHasta" class="form-control" type="date" name="Hasta" value="@Model.Hasta?.ToString("yyyy-MM-dd")" /></div>
+            }
+            @if (Model.Tab == "articulos")
+            {
+                <div class="col-12 col-md-4">
+                    <label class="form-label" for="rCat">Categoría</label>
+                    <select id="rCat" class="form-select" name="IdCategoria"><option value="">Todas</option>@foreach (var c in Model.Categorias) { <option value="@c.IdCategoria" selected="@(Model.IdCategoria == c.IdCategoria)">@c.Nombre</option> }</select>
+                </div>
+            }
+            @if (Model.Tab == "clientes")
+            {
+                <div class="col-12 col-md-4"><label class="form-label" for="rMin">Mínimo de reservaciones (HAVING)</label><input id="rMin" class="form-control" type="number" min="1" max="50" name="Minimo" value="@Model.Minimo" /></div>
+            }
+            <div class="col-12 col-md-2"><button class="btn btn-primary w-100" type="submit"><i class="bi bi-funnel"></i>Aplicar</button></div>
+        </form>
+    </div>
+</div>
+
+<partial name="_Errores" />
+
+@if (!Model.SinConexion && ViewData.ModelState.IsValid)
+{
+    @switch (Model.Tab)
+    {
+        case "articulos":
+            <div class="card">
+                <div class="card-header">Fuente: vista <code>vw_articulo_desempeno</code> (rentas Entregadas y Finalizadas)</div>
+                @if (Model.Articulos.Count == 0) { <partial name="_Vacio" model='new EstadoVacio("bi-box", "Sin datos", "No hay artículos en esta categoría.")' /> }
+                else
+                {
+                    var max = Math.Max(1, Model.Articulos.Max(a => a.IngresoGenerado));
+                    <div class="table-responsive"><table class="table table-hover">
+                        <thead><tr><th>Artículo</th><th>Categoría</th><th class="text-end">Veces rentado</th><th class="text-end">Piezas</th><th class="text-end">Ingreso</th><th style="width:20%"><span class="visually-hidden">Proporción</span></th></tr></thead>
+                        <tbody>
+                        @foreach (var a in Model.Articulos)
+                        {
+                            <tr class="@(a.Activo ? "" : "opacity-50")">
+                                <td class="fw-semibold">@a.Articulo</td><td><span class="chip">@a.Categoria</span></td>
+                                <td class="text-end tabular">@a.VecesRentado</td><td class="text-end tabular">@a.PiezasRentadas.ToString("N0")</td>
+                                <td class="text-end tabular fw-semibold">@a.IngresoGenerado.ToString("C")</td>
+                                <td><div class="meter"><span style="width:@((int)(100 * a.IngresoGenerado / max))%;background:var(--color-primary)"></span></div></td>
+                            </tr>
+                        }
+                        </tbody>
+                        <tfoot><tr><td colspan="4" class="text-end text-muted">Total</td><td class="text-end fw-bold tabular">@Model.Articulos.Sum(a => a.IngresoGenerado).ToString("C")</td><td></td></tr></tfoot>
+                    </table></div>
+                }
+            </div>
+            break;
+
+        case "faltantes":
+            <div class="card">
+                <div class="card-header">Fuente: vista <code>vw_faltantes_danos</code> (RN-10)</div>
+                @if (Model.Faltantes.Count == 0) { <partial name="_Vacio" model='new EstadoVacio("bi-emoji-smile", "Sin faltantes ni daños", "En el periodo seleccionado todo el material regresó completo.")' /> }
+                else
+                {
+                    <div class="table-responsive"><table class="table table-hover">
+                        <thead><tr><th>Fecha</th><th>Reservación</th><th>Cliente</th><th>Artículo</th><th class="text-end">Rentadas</th><th class="text-end">Dañadas</th><th class="text-end">Faltantes</th><th>Recibió</th></tr></thead>
+                        <tbody>
+                        @foreach (var f in Model.Faltantes)
+                        {
+                            <tr data-href="/Reservaciones/Detalle/@f.IdReservacion">
+                                <td class="tabular">@f.FechaDevolucion.ToString("dd MMM yyyy")</td><td class="fw-bold">#@f.IdReservacion</td><td>@f.Cliente</td><td>@f.Articulo</td>
+                                <td class="text-end tabular">@f.Rentadas</td>
+                                <td class="text-end tabular @(f.Danadas > 0 ? "text-warning fw-bold" : "")">@f.Danadas</td>
+                                <td class="text-end tabular @(f.Faltantes > 0 ? "text-danger fw-bold" : "")">@f.Faltantes</td>
+                                <td class="small text-muted">@f.Recibio</td>
+                            </tr>
+                        }
+                        </tbody>
+                        <tfoot><tr><td colspan="5" class="text-end text-muted">Totales</td><td class="text-end fw-bold tabular">@Model.Faltantes.Sum(f => f.Danadas)</td><td class="text-end fw-bold tabular">@Model.Faltantes.Sum(f => f.Faltantes)</td><td></td></tr></tfoot>
+                    </table></div>
+                }
+            </div>
+            break;
+
+        case "clientes":
+            <div class="card">
+                <div class="card-header">Clientes con @Model.Minimo o más reservaciones no canceladas (GROUP BY … HAVING)</div>
+                @if (Model.Frecuentes.Count == 0) { <partial name="_Vacio" model='new EstadoVacio("bi-people", "Sin clientes con ese mínimo", "Prueba con un número menor de reservaciones.")' /> }
+                else
+                {
+                    <div class="table-responsive"><table class="table table-hover">
+                        <thead><tr><th>#</th><th>Cliente</th><th class="text-end">Reservaciones</th><th class="text-end">Gasto total</th><th>Última renta</th></tr></thead>
+                        <tbody>
+                        @{ var n = 0; }
+                        @foreach (var c in Model.Frecuentes)
+                        {
+                            n++;
+                            <tr data-href="/Clientes/Detalle/@c.IdCliente"><td class="text-muted">@n</td><td class="fw-semibold">@c.Cliente</td><td class="text-end tabular">@c.Reservaciones</td><td class="text-end tabular fw-semibold">@c.GastoTotal.ToString("C")</td><td class="tabular">@c.UltimaRenta.ToString("dd MMM yyyy")</td></tr>
+                        }
+                        </tbody>
+                    </table></div>
+                }
+            </div>
+            break;
+
+        default:
+            <div class="row g-3">
+                <div class="col-12 col-xl-7">
+                    <div class="card h-100"><div class="card-header">Ingresos por mes (rentas Entregadas y Finalizadas)</div>
+                        <div class="card-body">
+                            @if (Model.Ingresos.Count == 0) { <partial name="_Vacio" model='new EstadoVacio("bi-bar-chart", "Sin ingresos en el periodo", "Cambia el rango de fechas.")' /> }
+                            else { <div class="chart-box" style="height:320px"><canvas id="grafica" role="img" aria-label="Gráfica de ingresos por mes"></canvas></div> }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-5">
+                    <div class="card h-100">
+                        <div class="table-responsive"><table class="table">
+                            <thead><tr><th>Mes</th><th class="text-end">Rentas</th><th class="text-end">Ingresos</th><th class="text-end">Ticket prom.</th></tr></thead>
+                            <tbody>@foreach (var i in Model.Ingresos) { <tr><td class="tabular">@i.Mes</td><td class="text-end tabular">@i.Rentas</td><td class="text-end tabular fw-semibold">@i.Ingresos.ToString("C")</td><td class="text-end tabular">@i.TicketPromedio.ToString("C")</td></tr> }</tbody>
+                            <tfoot><tr><td class="text-muted">Total</td><td class="text-end fw-bold tabular">@Model.Ingresos.Sum(i => i.Rentas)</td><td class="text-end fw-bold tabular">@Model.Ingresos.Sum(i => i.Ingresos).ToString("C")</td><td></td></tr></tfoot>
+                        </table></div>
+                    </div>
+                </div>
+            </div>
+            break;
+    }
+}
+
+@section Scripts {
+    <script src="~/lib/chartjs/chart.umd.min.js"></script>
+    <script>
+        (function () {
+            const el = document.getElementById('grafica');
+            if (!el) return;
+            const datos = @Json.Serialize(Model.Ingresos);
+            let g;
+            function dibujar() {
+                const c = florecitas.colores();
+                g && g.destroy();
+                g = new Chart(el, {
+                    data: {
+                        labels: datos.map(d => d.mes),
+                        datasets: [
+                            { type: 'bar', label: 'Ingresos', data: datos.map(d => d.ingresos), backgroundColor: c.primary, borderRadius: 8, yAxisID: 'y', maxBarThickness: 46 },
+                            { type: 'line', label: 'Rentas', data: datos.map(d => d.rentas), borderColor: c.accent, backgroundColor: c.accent, tension: .3, yAxisID: 'y1' }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        animation: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : { duration: 400 },
+                        plugins: { legend: { labels: { color: c.fg } }, tooltip: { callbacks: { label: ctx => ctx.dataset.yAxisID === 'y' ? 'Ingresos: ' + florecitas.moneda.format(ctx.parsed.y) : 'Rentas: ' + ctx.parsed.y } } },
+                        scales: {
+                            x: { grid: { display: false }, ticks: { color: c.muted } },
+                            y: { position: 'left', grid: { color: c.border }, ticks: { color: c.muted, callback: v => florecitas.moneda.format(v).replace('.00', '') } },
+                            y1: { position: 'right', grid: { display: false }, ticks: { color: c.muted, precision: 0 } }
+                        }
+                    }
+                });
+            }
+            dibujar();
+            document.addEventListener('tema-cambiado', dibujar);
+        })();
+    </script>
+}

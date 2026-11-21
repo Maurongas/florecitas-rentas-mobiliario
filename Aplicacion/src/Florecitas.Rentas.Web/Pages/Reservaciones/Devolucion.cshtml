@@ -1,0 +1,90 @@
+@page "{id:int}"
+@model Florecitas.Rentas.Web.Pages.Reservaciones.DevolucionModel
+@{
+    ViewData["Title"] = $"Devolución #{Model.R.IdReservacion}";
+}
+<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a asp-page="Index">Reservaciones</a></li><li class="breadcrumb-item"><a asp-page="Detalle" asp-route-id="@Model.R.IdReservacion">#@Model.R.IdReservacion</a></li><li class="breadcrumb-item active" aria-current="page">Devolución</li></ol></nav>
+<div class="page-header">
+    <div>
+        <h1>Registrar devolución</h1>
+        <p>@Model.R.Cliente · @Model.R.LugarEvento · terminó el @Model.R.FechaFin.ToString("dd MMM yyyy")</p>
+    </div>
+</div>
+
+<partial name="_Errores" />
+
+<form method="post" novalidate>
+    <div class="row g-4">
+        <div class="col-12 col-xl-8">
+            <div class="card">
+                <div class="card-header">Revisión artículo por artículo</div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead><tr><th>Artículo</th><th class="text-end">Rentadas</th><th style="width:140px">Buen estado</th><th style="width:140px">Dañadas</th><th class="text-end">Faltantes</th></tr></thead>
+                        <tbody>
+                        @for (var i = 0; i < Model.Renglones.Count; i++)
+                        {
+                            var x = Model.Renglones[i];
+                            <tr class="renglon-dev" data-rentadas="@x.Rentadas">
+                                <td class="fw-semibold">
+                                    @x.Articulo
+                                    <input type="hidden" name="Renglones[@i].IdArticulo" value="@x.IdArticulo" />
+                                    <input type="hidden" name="Renglones[@i].Articulo" value="@x.Articulo" />
+                                    <input type="hidden" name="Renglones[@i].Rentadas" value="@x.Rentadas" />
+                                </td>
+                                <td class="text-end tabular">@x.Rentadas</td>
+                                <td><label class="visually-hidden" for="dev-@i">Piezas en buen estado de @x.Articulo</label><input class="form-control tabular inp-dev" id="dev-@i" type="number" min="0" max="@x.Rentadas" name="Renglones[@i].Devueltas" value="@x.Devueltas" /></td>
+                                <td><label class="visually-hidden" for="dan-@i">Piezas dañadas de @x.Articulo</label><input class="form-control tabular inp-dan" id="dan-@i" type="number" min="0" max="@x.Rentadas" name="Renglones[@i].Danadas" value="@x.Danadas" /></td>
+                                <td class="text-end tabular fw-bold falt">0</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
+            <div class="card sticky-summary">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2"><span class="text-muted">Piezas en buen estado</span><strong class="tabular" id="totDev">0</strong></div>
+                    <div class="d-flex justify-content-between mb-2"><span class="text-muted">Dañadas</span><strong class="tabular text-warning" id="totDan">0</strong></div>
+                    <div class="d-flex justify-content-between mb-3"><span class="text-muted">Faltantes</span><strong class="tabular text-danger" id="totFal">0</strong></div>
+                    <div class="alert alert-danger small py-2 d-none" id="alertaRN10" role="alert">RN-10: en algún renglón las piezas devueltas + dañadas superan lo rentado.</div>
+                    <label class="form-label" asp-for="Observaciones">Observaciones</label>
+                    <textarea class="form-control mb-3" asp-for="Observaciones" maxlength="200" rows="3" placeholder="Ej. 2 sillas con la pata doblada"></textarea>
+                    <p class="small text-muted">Recibe: <strong>@User.Identity?.Name</strong>. Al guardar, la reservación pasa a <em>Finalizada</em> (trigger).</p>
+                    <button class="btn btn-primary w-100" type="submit"><i class="bi bi-clipboard-check"></i>Guardar devolución</button>
+                    <a class="btn btn-link w-100" asp-page="Detalle" asp-route-id="@Model.R.IdReservacion">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        (function () {
+            function calc() {
+                let td = 0, tn = 0, tf = 0, malo = false;
+                document.querySelectorAll('.renglon-dev').forEach(tr => {
+                    const rent = +tr.dataset.rentadas;
+                    const d = parseInt(tr.querySelector('.inp-dev').value, 10) || 0;
+                    const n = parseInt(tr.querySelector('.inp-dan').value, 10) || 0;
+                    const f = rent - d - n;
+                    const celda = tr.querySelector('.falt');
+                    celda.textContent = f;
+                    celda.className = 'text-end tabular fw-bold falt ' + (f < 0 ? 'text-danger' : f > 0 ? 'text-danger' : 'text-success');
+                    tr.querySelectorAll('input[type=number]').forEach(i => i.classList.toggle('is-invalid', f < 0));
+                    malo = malo || f < 0;
+                    td += d; tn += n; tf += Math.max(f, 0);
+                });
+                document.getElementById('totDev').textContent = td;
+                document.getElementById('totDan').textContent = tn;
+                document.getElementById('totFal').textContent = tf;
+                document.getElementById('alertaRN10').classList.toggle('d-none', !malo);
+            }
+            document.addEventListener('input', calc);
+            calc();
+        })();
+    </script>
+}

@@ -1,0 +1,27 @@
+@{
+    var pagina = Model as PaginaBase;
+    var errores = ViewData.ModelState[string.Empty]?.Errors;
+}
+@if (pagina?.SinConexion == true)
+{
+    <div class="alert alert-danger d-flex gap-3 align-items-start" role="alert">
+        <i class="bi bi-database-x fs-4"></i>
+        <div>
+            <strong>Sin conexión con la base de datos.</strong>
+            <div>@errores?.FirstOrDefault()?.ErrorMessage</div>
+            <a class="btn btn-sm btn-soft mt-2" href="">Reintentar</a>
+        </div>
+    </div>
+}
+else if (errores is { Count: > 0 })
+{
+    <div class="alert alert-danger d-flex gap-3 align-items-start" role="alert" tabindex="-1" id="resumenErrores">
+        <i class="bi bi-exclamation-triangle fs-5"></i>
+        <div>
+            @foreach (var e in errores)
+            {
+                <div>@e.ErrorMessage</div>
+            }
+        </div>
+    </div>
+}

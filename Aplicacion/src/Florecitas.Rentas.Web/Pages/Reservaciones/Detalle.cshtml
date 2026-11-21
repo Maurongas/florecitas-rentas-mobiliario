@@ -1,0 +1,254 @@
+@page "{id:int}"
+@model Florecitas.Rentas.Web.Pages.Reservaciones.DetalleModel
+@{
+    var r = Model.R;
+    ViewData["Title"] = $"Reservación #{r.IdReservacion}";
+    var paso = r.Estado switch { "Confirmada" => 1, "Entregada" => 2, "Finalizada" => 3, _ => 0 };
+    var atrasada = r.Estado == "Entregada" && r.FechaFin.Date < DateTime.Today;
+    var enUso = Model.Detalles.Select(d => d.IdArticulo).ToHashSet();
+}
+<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a asp-page="Index">Reservaciones</a></li><li class="breadcrumb-item active" aria-current="page">#@r.IdReservacion</li></ol></nav>
+
+<partial name="_Errores" />
+
+@if (!Model.SinConexion)
+{
+<div class="page-header">
+    <div>
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <h1>Reservación #@r.IdReservacion</h1>
+            <partial name="_Estado" model="r.Estado" />
+            @if (atrasada) { <span class="chip tone-danger"><i class="bi bi-alarm"></i>Devolución atrasada</span> }
+        </div>
+        <p>Registrada el @r.FechaRegistro.ToString("dd 'de' MMMM yyyy, HH:mm")</p>
+    </div>
+    <div class="d-flex gap-2 flex-wrap no-print">
+        @if (r.Estado == "Confirmada")
+        {
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEntrega"><i class="bi bi-truck"></i>Registrar entrega</button>
+            <button class="btn btn-soft" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="bi bi-pencil"></i>Editar datos</button>
+            <form method="post" asp-page-handler="Cancelar" asp-route-id="@r.IdReservacion" data-confirmar="¿Cancelar la reservación #@r.IdReservacion? Las piezas se liberarán y no se puede deshacer.">
+                <button class="btn btn-soft text-danger" type="submit"><i class="bi bi-x-circle"></i>Cancelar</button>
+            </form>
+        }
+        @if (r.Estado == "Entregada")
+        {
+            <a class="btn btn-primary" asp-page="Devolucion" asp-route-id="@r.IdReservacion"><i class="bi bi-box-arrow-in-down-left"></i>Registrar devolución</a>
+        }
+        @if (r.Estado == "Cancelada")
+        {
+            <form method="post" asp-page-handler="Eliminar" asp-route-id="@r.IdReservacion" data-confirmar="¿Eliminar definitivamente la reservación cancelada #@r.IdReservacion?">
+                <button class="btn btn-soft text-danger" type="submit"><i class="bi bi-trash3"></i>Eliminar</button>
+            </form>
+        }
+        <button class="btn btn-soft btn-icon" onclick="window.print()" title="Imprimir" aria-label="Imprimir"><i class="bi bi-printer"></i></button>
+    </div>
+</div>
+
+@if (r.Estado != "Cancelada")
+{
+    <div class="card mb-4">
+        <div class="card-body stepper">
+            <span class="step @(paso > 1 ? "done" : paso == 1 ? "current" : "")"><span class="dot">@(paso > 1 ? Html.Raw("<i class='bi bi-check'></i>") : "1")</span>Confirmada</span>
+            <span class="step-sep"></span>
+            <span class="step @(paso > 2 ? "done" : paso == 2 ? "current" : "")"><span class="dot">@(paso > 2 ? Html.Raw("<i class='bi bi-check'></i>") : "2")</span>Entregada</span>
+            <span class="step-sep"></span>
+            <span class="step @(paso == 3 ? "done" : "")"><span class="dot">@(paso == 3 ? Html.Raw("<i class='bi bi-check'></i>") : "3")</span>Finalizada</span>
+        </div>
+    </div>
+}
+
+<div class="row g-4">
+    <div class="col-12 col-xl-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-box-seam me-2"></i>Artículos (@r.Articulos) · @r.Piezas.ToString("N0") piezas</span>
+                @if (Model.EsEditable)
+                {
+                    <button class="btn btn-sm btn-soft no-print" data-bs-toggle="collapse" data-bs-target="#agregarArticulo" aria-expanded="false"><i class="bi bi-plus-lg"></i>Agregar</button>
+                }
+            </div>
+            @if (Model.EsEditable)
+            {
+                <div class="collapse border-bottom no-print" id="agregarArticulo">
+                    <form method="post" asp-page-handler="Agregar" asp-route-id="@r.IdReservacion" class="row g-2 p-3 align-items-end">
+                        <div class="col-12 col-md-7">
+                            <label class="form-label small" for="nuevoArt">Artículo (disponibles para estas fechas)</label>
+                            <select class="form-select" id="nuevoArt" name="idArticulo" required>
+                                @foreach (var d in Model.DisponibilidadEdicion.Where(d => !enUso.Contains(d.IdArticulo)))
+                                {
+                                    <option value="@d.IdArticulo" disabled="@(d.Disponible <= 0)">@d.Nombre — @d.Disponible libres · @d.PrecioDia.ToString("C")/día</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-6 col-md-2"><label class="form-label small" for="nuevaCant">Cantidad</label><input class="form-control" id="nuevaCant" name="cantidad" type="number" min="1" required /></div>
+                        <div class="col-6 col-md-3"><button class="btn btn-primary w-100" type="submit"><i class="bi bi-plus-lg"></i>Agregar</button></div>
+                    </form>
+                </div>
+            }
+            <div class="table-responsive">
+                <table class="table">
+                    <thead><tr><th>Artículo</th><th class="text-end">Cantidad</th><th class="text-end">Precio/día</th><th class="text-end">Subtotal</th>@if (Model.EsEditable) { <th class="no-print"><span class="visually-hidden">Acciones</span></th> }</tr></thead>
+                    <tbody>
+                    @foreach (var d in Model.Detalles)
+                    {
+                        var disp = Model.DisponibilidadEdicion.FirstOrDefault(x => x.IdArticulo == d.IdArticulo);
+                        <tr>
+                            <td><div class="fw-semibold">@d.Articulo</div><div class="small text-muted">@d.Categoria</div></td>
+                            <td class="text-end">
+                                @if (Model.EsEditable)
+                                {
+                                    <form method="post" asp-page-handler="Cantidad" asp-route-id="@r.IdReservacion" class="d-inline-flex gap-1 justify-content-end">
+                                        <input type="hidden" name="idArticulo" value="@d.IdArticulo" />
+                                        <label class="visually-hidden" for="c-@d.IdArticulo">Cantidad de @d.Articulo</label>
+                                        <input class="form-control form-control-sm text-end tabular" style="width:90px;min-height:34px" id="c-@d.IdArticulo" name="cantidad" type="number" min="1" value="@d.Cantidad" />
+                                        <button class="btn btn-sm btn-soft" type="submit" title="Guardar cantidad" aria-label="Guardar cantidad"><i class="bi bi-check2"></i></button>
+                                    </form>
+                                    @if (disp is not null) { <div class="small text-muted">máx. @(disp.Disponible) libres</div> }
+                                }
+                                else { <span class="tabular">@d.Cantidad</span> }
+                            </td>
+                            <td class="text-end tabular">
+                                @d.PrecioUnitario.ToString("C")
+                                @if (d.PrecioActual != d.PrecioUnitario) { <div class="small text-muted" title="Precio congelado al reservar (RN-07)">hoy @d.PrecioActual.ToString("C")</div> }
+                            </td>
+                            <td class="text-end tabular fw-semibold">@d.Subtotal.ToString("C")</td>
+                            @if (Model.EsEditable)
+                            {
+                                <td class="text-end no-print">
+                                    <form method="post" asp-page-handler="Quitar" asp-route-id="@r.IdReservacion" data-confirmar="¿Quitar @d.Articulo de la reservación?">
+                                        <input type="hidden" name="idArticulo" value="@d.IdArticulo" />
+                                        <button class="btn btn-sm btn-soft btn-icon" type="submit" aria-label="Quitar @d.Articulo"><i class="bi bi-trash3"></i></button>
+                                    </form>
+                                </td>
+                            }
+                        </tr>
+                    }
+                    </tbody>
+                    <tfoot>
+                        <tr><td colspan="3" class="text-end text-muted">Total (@r.Dias día(s))</td><td class="text-end fs-5 fw-bold tabular" style="color:var(--color-primary)">@r.Total.ToString("C")</td>@if (Model.EsEditable) { <td class="no-print"></td> }</tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        @if (Model.Devolucion is not null)
+        {
+            <div class="card mb-4">
+                <div class="card-header"><i class="bi bi-clipboard-check me-2"></i>Revisión de la devolución</div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead><tr><th>Artículo</th><th class="text-end">Rentadas</th><th class="text-end">Buen estado</th><th class="text-end">Dañadas</th><th class="text-end">Faltantes</th></tr></thead>
+                        <tbody>
+                        @foreach (var d in Model.DetallesDevolucion)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@d.Articulo</td>
+                                <td class="text-end tabular">@d.Rentadas</td>
+                                <td class="text-end tabular">@d.Devueltas</td>
+                                <td class="text-end tabular @(d.Danadas > 0 ? "text-warning fw-bold" : "")">@d.Danadas</td>
+                                <td class="text-end tabular @(d.Faltantes > 0 ? "text-danger fw-bold" : "")">@d.Faltantes</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="col-12 col-xl-4">
+        <div class="card mb-4">
+            <div class="card-header"><i class="bi bi-person me-2"></i>Cliente y evento</div>
+            <div class="card-body">
+                <a class="fw-bold fs-5 text-decoration-none" asp-page="/Clientes/Detalle" asp-route-id="@r.IdCliente">@r.Cliente</a>
+                <div class="small text-muted mb-3"><i class="bi bi-telephone me-1"></i>@r.Telefono · <i class="bi bi-envelope ms-1 me-1"></i>@r.Correo</div>
+                <dl class="mb-0 small">
+                    <dt class="text-muted fw-normal">Lugar</dt><dd class="fw-semibold">@r.LugarEvento</dd>
+                    <dt class="text-muted fw-normal">Fechas</dt><dd class="fw-semibold">@r.FechaInicio.ToString("dddd dd MMM yyyy")@(r.Dias > 1 ? " al " + r.FechaFin.ToString("dddd dd MMM") : "") · @r.Dias día(s)</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header"><i class="bi bi-clock-history me-2"></i>Seguimiento</div>
+            <div class="card-body">
+                <ul class="timeline">
+                    <li>
+                        <div class="fw-semibold">Reservación confirmada</div>
+                        <div class="small text-muted">@r.FechaRegistro.ToString("dd MMM yyyy HH:mm")</div>
+                    </li>
+                    <li class="@(Model.Entrega is null ? "muted" : "")">
+                        <div class="fw-semibold">Entrega</div>
+                        @if (Model.Entrega is { } ent)
+                        {
+                            <div class="small text-muted">@ent.FechaHora.ToString("dd MMM yyyy HH:mm") · @ent.Empleado</div>
+                            @if (!string.IsNullOrEmpty(ent.Observaciones)) { <div class="small">“@ent.Observaciones”</div> }
+                        }
+                        else { <div class="small text-muted">Pendiente</div> }
+                    </li>
+                    <li class="@(Model.Devolucion is null ? "muted" : "")">
+                        <div class="fw-semibold">Devolución</div>
+                        @if (Model.Devolucion is { } dev)
+                        {
+                            <div class="small text-muted">@dev.FechaHora.ToString("dd MMM yyyy HH:mm") · @dev.Empleado</div>
+                            @if (!string.IsNullOrEmpty(dev.Observaciones)) { <div class="small">“@dev.Observaciones”</div> }
+                        }
+                        else { <div class="small text-muted">@(r.Estado == "Cancelada" ? "No aplica (cancelada)" : "Pendiente")</div> }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><i class="bi bi-shield-check me-2"></i>Bitácora (triggers)</div>
+            <ul class="list-group list-group-flush small">
+                @foreach (var b in Model.Historial)
+                {
+                    <li class="list-group-item bg-transparent">
+                        <div class="d-flex justify-content-between"><span class="fw-semibold">@b.Accion</span><span class="text-muted tabular">@b.Fecha.ToString("dd/MM/yy HH:mm")</span></div>
+                        <div>@b.Detalle</div>
+                        <div class="text-muted">@(b.Empleado ?? "Carga inicial") </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@if (r.Estado == "Confirmada")
+{
+    <div class="modal fade" id="modalEntrega" tabindex="-1" aria-labelledby="tituloEntrega" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content" method="post" asp-page-handler="Entrega" asp-route-id="@r.IdReservacion">
+                <div class="modal-header"><h2 class="modal-title h5" id="tituloEntrega">Registrar entrega</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+                <div class="modal-body">
+                    <p>Se registrará que <strong>@User.Identity?.Name</strong> entregó @r.Piezas.ToString("N0") piezas en <strong>@r.LugarEvento</strong>.</p>
+                    <label class="form-label" for="obsEntrega">Observaciones (opcional)</label>
+                    <textarea class="form-control" id="obsEntrega" name="observaciones" maxlength="200" rows="3" placeholder="Ej. Se acomodó en el jardín, el cliente revisó el material"></textarea>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-soft" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-primary" type="submit"><i class="bi bi-truck"></i>Confirmar entrega</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="tituloEditar" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content" method="post" asp-page-handler="Editar" asp-route-id="@r.IdReservacion">
+                <div class="modal-header"><h2 class="modal-title h5" id="tituloEditar">Editar datos de la reservación</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div>
+                <div class="modal-body row g-3">
+                    <div class="col-12">
+                        <label class="form-label" for="edCliente">Cliente</label>
+                        <select class="form-select" id="edCliente" name="idCliente">
+                            @foreach (var c in Model.Clientes) { <option value="@c.IdCliente" selected="@(c.IdCliente == r.IdCliente)">@c.NombreCompleto</option> }
+                        </select>
+                    </div>
+                    <div class="col-6"><label class="form-label" for="edInicio">Inicio</label><input class="form-control" type="date" id="edInicio" name="inicio" value="@r.FechaInicio.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")" required /></div>
+                    <div class="col-6"><label class="form-label" for="edFin">Fin</label><input class="form-control" type="date" id="edFin" name="fin" value="@r.FechaFin.ToString("yyyy-MM-dd")" min="@DateTime.Today.ToString("yyyy-MM-dd")" required /></div>
+                    <div class="col-12"><label class="form-label" for="edLugar">Lugar del evento</label><input class="form-control" id="edLugar" name="lugar" value="@r.LugarEvento" maxlength="150" minlength="5" required /></div>
+                    <div class="col-12 small text-muted"><i class="bi bi-info-circle"></i> Si cambias las fechas, la base de datos vuelve a revisar que haya piezas suficientes de cada artículo (RN-03).</div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-soft" data-bs-dismiss="modal">Cancelar</button><button class="btn btn-primary" type="submit"><i class="bi bi-check2"></i>Guardar cambios</button></div>
+            </form>
+        </div>
+    </div>
+}
+}

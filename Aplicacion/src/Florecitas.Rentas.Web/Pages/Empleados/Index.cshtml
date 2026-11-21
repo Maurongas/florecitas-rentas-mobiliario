@@ -1,0 +1,49 @@
+@page
+@model Florecitas.Rentas.Web.Pages.Empleados.IndexModel
+@{
+    ViewData["Title"] = "Empleados";
+}
+<div class="page-header">
+    <div><h1>Empleados</h1><p>Usuarios del sistema. El Administrador gestiona catálogo y personal; el Encargado opera reservaciones, entregas y devoluciones.</p></div>
+    <a class="btn btn-primary" asp-page="Editar"><i class="bi bi-person-plus"></i>Nuevo empleado</a>
+</div>
+
+<partial name="_Errores" />
+
+<div class="card">
+    @if (Model.Empleados.Count == 0 && !Model.SinConexion)
+    {
+        <partial name="_Vacio" model='new EstadoVacio("bi-person-badge", "Sin empleados", "Registra al personal que usará el sistema.", "Nuevo empleado", "/Empleados/Editar")' />
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead><tr><th>Empleado</th><th>Usuario</th><th>Rol</th><th class="text-end">Entregas</th><th class="text-end">Devoluciones</th><th>Estado</th><th class="text-end"><span class="visually-hidden">Acciones</span></th></tr></thead>
+                <tbody>
+                @foreach (var e in Model.Empleados)
+                {
+                    <tr class="@(e.Activo ? "" : "opacity-50")">
+                        <td class="fw-semibold">@e.Nombre</td>
+                        <td><code>@e.Usuario</code></td>
+                        <td><span class="chip @(e.Rol == "Administrador" ? "tone-accent" : "")">@e.Rol</span></td>
+                        <td class="text-end tabular">@e.Entregas</td>
+                        <td class="text-end tabular">@e.Devoluciones</td>
+                        <td>@(e.Activo ? Html.Raw("<span class='badge-estado estado-Finalizada'>Activo</span>") : Html.Raw("<span class='badge-estado estado-Cancelada'>Inactivo</span>"))</td>
+                        <td class="text-end text-nowrap">
+                            <a class="btn btn-sm btn-soft btn-icon" asp-page="Editar" asp-route-id="@e.IdEmpleado" aria-label="Editar @e.Nombre" title="Editar"><i class="bi bi-pencil"></i></a>
+                            @if (e.Entregas + e.Devoluciones == 0)
+                            {
+                                <form method="post" asp-page-handler="Eliminar" asp-route-id="@e.IdEmpleado" class="d-inline" data-confirmar="¿Eliminar a @e.Nombre?">
+                                    <button class="btn btn-sm btn-soft btn-icon" type="submit" aria-label="Eliminar @e.Nombre" title="Eliminar"><i class="bi bi-trash3"></i></button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <div class="p-3 small text-muted"><i class="bi bi-info-circle"></i> Los empleados con entregas o devoluciones registradas no se eliminan: se marcan como inactivos para conservar la trazabilidad.</div>
+    }
+</div>

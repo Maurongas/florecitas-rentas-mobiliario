@@ -1,0 +1,131 @@
+@{
+    var ruta = ViewContext.RouteData.Values["page"]?.ToString() ?? "";
+    string Activo(string prefijo) => ruta == prefijo || ruta.StartsWith(prefijo + "/") ? "active" : "";
+    string AriaActual(string prefijo) => Activo(prefijo) == "active" ? "page" : "false";
+    var esAdmin = User.IsInRole("Administrador");
+    var nombre = User.Identity?.Name ?? "";
+    var iniciales = string.Concat(nombre.Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(p => p[0]));
+    var pagina = Model as PaginaBase;
+    var mensajeOk = pagina?.MensajeOk ?? TempData["MensajeOk"] as string;
+    var mensajeError = pagina?.MensajeError ?? TempData["MensajeError"] as string;
+}
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] · Florecitas Rentas</title>
+    <meta name="description" content="Control de rentas de mobiliario para eventos" />
+    <script>
+        // Aplica el tema guardado antes de pintar (evita parpadeo)
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem('tema'); } catch (e) { }
+            if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-bs-theme', t);
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="icon" href="~/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+<a class="visually-hidden-focusable btn btn-primary position-absolute m-2" href="#contenido">Saltar al contenido</a>
+<div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+        <a class="brand" asp-page="/Index">
+            <span class="brand-mark" aria-hidden="true"><i class="bi bi-flower1"></i></span>
+            <span>
+                <span class="brand-name d-block">Florecitas</span>
+                <span class="brand-sub">Rentas de mobiliario</span>
+            </span>
+        </a>
+
+        <nav>
+            <a class="side-link @Activo("/Index")" aria-current="@AriaActual("/Index")" asp-page="/Index"><i class="bi bi-grid-1x2"></i>Tablero</a>
+            <a class="side-link @Activo("/Disponibilidad")" aria-current="@AriaActual("/Disponibilidad")" asp-page="/Disponibilidad"><i class="bi bi-calendar2-check"></i>Disponibilidad</a>
+
+            <div class="nav-section">Operación</div>
+            <a class="side-link @Activo("/Reservaciones")" aria-current="@AriaActual("/Reservaciones")" asp-page="/Reservaciones/Index"><i class="bi bi-journal-bookmark"></i>Reservaciones</a>
+            <a class="side-link @Activo("/Clientes")" aria-current="@AriaActual("/Clientes")" asp-page="/Clientes/Index"><i class="bi bi-people"></i>Clientes</a>
+
+            <div class="nav-section">Catálogo</div>
+            <a class="side-link @Activo("/Articulos")" aria-current="@AriaActual("/Articulos")" asp-page="/Articulos/Index"><i class="bi bi-box-seam"></i>Artículos</a>
+            @if (esAdmin)
+            {
+                <a class="side-link @Activo("/Categorias")" aria-current="@AriaActual("/Categorias")" asp-page="/Categorias/Index"><i class="bi bi-tags"></i>Categorías</a>
+            }
+
+            <div class="nav-section">Análisis</div>
+            <a class="side-link @Activo("/Reportes")" aria-current="@AriaActual("/Reportes")" asp-page="/Reportes/Index"><i class="bi bi-bar-chart-line"></i>Reportes</a>
+            @if (esAdmin)
+            {
+                <div class="nav-section">Administración</div>
+                <a class="side-link @Activo("/Empleados")" aria-current="@AriaActual("/Empleados")" asp-page="/Empleados/Index"><i class="bi bi-person-badge"></i>Empleados</a>
+                <a class="side-link @Activo("/Bitacora")" aria-current="@AriaActual("/Bitacora")" asp-page="/Bitacora/Index"><i class="bi bi-shield-check"></i>Auditoría</a>
+            }
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-chip">
+                <span class="avatar" aria-hidden="true">@iniciales</span>
+                <div class="flex-grow-1 min-w-0">
+                    <div class="fw-semibold text-truncate">@nombre</div>
+                    <div class="small text-muted">@(esAdmin ? "Administrador" : "Encargado")</div>
+                </div>
+                <form method="post" asp-page="/Cuenta/Logout">
+                    <button class="btn btn-soft btn-icon" type="submit" title="Cerrar sesión" aria-label="Cerrar sesión"><i class="bi bi-box-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <div class="main">
+        <header class="topbar">
+            <button class="btn btn-soft btn-icon d-lg-none" id="btnMenu" type="button" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false"><i class="bi bi-list"></i></button>
+            <form class="d-none d-md-flex flex-grow-1" method="get" asp-page="/Reservaciones/Index" role="search" style="max-width:420px">
+                <label class="visually-hidden" for="busquedaGlobal">Buscar reservaciones</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent"><i class="bi bi-search"></i></span>
+                    <input id="busquedaGlobal" name="Buscar" class="form-control border-start-0" placeholder="Buscar reservación, cliente o lugar…" />
+                </div>
+            </form>
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <span class="chip d-none d-sm-inline-flex"><i class="bi bi-calendar3"></i>@DateTime.Today.ToString("dddd d 'de' MMMM")</span>
+                <button class="btn btn-soft btn-icon" id="btnTema" type="button" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema"><i class="bi bi-moon-stars"></i></button>
+                <a class="btn btn-primary" asp-page="/Reservaciones/Nueva"><i class="bi bi-plus-lg"></i><span class="d-none d-sm-inline">Nueva reservación</span></a>
+            </div>
+        </header>
+
+        <main id="contenido" class="content" tabindex="-1">
+            @RenderBody()
+        </main>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" aria-live="polite" aria-atomic="true">
+    @if (!string.IsNullOrEmpty(mensajeOk))
+    {
+        <div class="toast show" role="status" data-bs-delay="5000">
+            <div class="toast-body"><i class="bi bi-check-circle-fill text-success fs-5"></i><div class="flex-grow-1">@mensajeOk</div><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button></div>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(mensajeError))
+    {
+        <div class="toast show" role="alert" data-bs-autohide="false">
+            <div class="toast-body"><i class="bi bi-exclamation-octagon-fill text-danger fs-5"></i><div class="flex-grow-1">@mensajeError</div><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button></div>
+        </div>
+    }
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

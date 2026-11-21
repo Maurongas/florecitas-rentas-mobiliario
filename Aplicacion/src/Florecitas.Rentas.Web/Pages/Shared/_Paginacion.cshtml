@@ -1,0 +1,27 @@
+@model (int Pagina, int TotalPaginas, int Total)
+@{
+    string Url(int p)
+    {
+        var q = System.Web.HttpUtility.ParseQueryString(Context.Request.QueryString.Value ?? "");
+        q["Pagina"] = p.ToString();
+        return "?" + q;
+    }
+}
+@if (Model.TotalPaginas > 1)
+{
+    <nav class="d-flex flex-wrap justify-content-between align-items-center gap-2 p-3" aria-label="Paginación">
+        <span class="small text-muted">Página @Model.Pagina de @Model.TotalPaginas · @Model.Total registros</span>
+        <ul class="pagination pagination-sm mb-0">
+            <li class="page-item @(Model.Pagina <= 1 ? "disabled" : "")"><a class="page-link" href="@Url(Model.Pagina - 1)" aria-label="Anterior"><i class="bi bi-chevron-left"></i></a></li>
+            @for (var i = Math.Max(1, Model.Pagina - 2); i <= Math.Min(Model.TotalPaginas, Model.Pagina + 2); i++)
+            {
+                <li class="page-item @(i == Model.Pagina ? "active" : "")"><a class="page-link" href="@Url(i)" aria-current="@(i == Model.Pagina ? "page" : null)">@i</a></li>
+            }
+            <li class="page-item @(Model.Pagina >= Model.TotalPaginas ? "disabled" : "")"><a class="page-link" href="@Url(Model.Pagina + 1)" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></a></li>
+        </ul>
+    </nav>
+}
+else if (Model.Total > 0)
+{
+    <div class="p-3 small text-muted">@Model.Total registro(s)</div>
+}
