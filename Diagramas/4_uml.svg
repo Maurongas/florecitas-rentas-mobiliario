@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1860" height="1010" viewBox="0 0 1860 1010">
+<title>Diagrama de clases UML - Rentas de mobiliario</title>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="40.0" y="30.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#2A1424" text-anchor="start">Modelo de datos · notación UML (diagrama de clases)</text>
+<polyline points="750.0,238.0 750.0,284.0 750.0,284.0 750.0,330.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="721.9" y="272.0" width="56.2" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="750.0" y="285.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">realiza</text>
+<polyline points="190.0,192.0 190.0,261.0 190.0,261.0 190.0,330.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="155.3" y="249.0" width="69.4" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="190.0" y="262.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">clasifica</text>
+<polyline points="698.0,550.0 698.0,640.0 522.0,640.0 522.0,690.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="581.9" y="628.0" width="56.2" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="610.0" y="641.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">incluye</text>
+<polyline points="242.0,550.0 242.0,640.0 418.0,640.0 418.0,690.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="288.7" y="628.0" width="82.6" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="330.0" y="641.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">se renta en</text>
+<polyline points="880.0,396.0 1000.0,396.0 1000.0,278.0 1120.0,278.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="962.0" y="325.0" width="76.0" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1000.0" y="338.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">se entrega</text>
+<polyline points="880.0,484.0 1000.0,484.0 1000.0,568.0 1120.0,568.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="958.7" y="514.0" width="82.6" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1000.0" y="527.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">se devuelve</text>
+<polyline points="1560.0,359.4 1470.0,359.4 1470.0,278.0 1380.0,278.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="1438.6" y="306.7" width="62.8" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1470.0" y="319.7" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">registra</text>
+<polyline points="1560.0,438.6 1470.0,438.6 1470.0,568.0 1380.0,568.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="1445.2" y="491.3" width="49.6" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1470.0" y="504.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">recibe</text>
+<polyline points="1250.0,656.0 1250.0,728.0 1250.0,728.0 1250.0,800.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="1221.9" y="716.0" width="56.2" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1250.0" y="729.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">detalla</text>
+<polyline points="112.0,550.0 112.0,877.0 1120.0,877.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="571.4" y="865.0" width="89.2" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="616.0" y="878.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">se revisa en</text>
+<rect x="60" y="60" width="260" height="132" fill="#FFF" stroke="#9D174D" stroke-width="1.6"/>
+<rect x="60" y="60" width="260" height="48" fill="#9D174D" opacity=".12"/>
+<text x="190.0" y="76.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#9D174D" text-anchor="middle">«entidad»</text>
+<text x="190.0" y="94.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">Categoria</text>
+<polyline points="60.0,108.0 320.0,108.0" fill="none" stroke="#9D174D" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="70.0" y="126.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_categoria: int {PK}</text>
+<text x="70.0" y="148.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- nombre: string {UQ}</text>
+<text x="70.0" y="170.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- descripcion: string</text>
+<rect x="620" y="40" width="260" height="198" fill="#FFF" stroke="#9D174D" stroke-width="1.6"/>
+<rect x="620" y="40" width="260" height="48" fill="#9D174D" opacity=".12"/>
+<text x="750.0" y="56.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#9D174D" text-anchor="middle">«entidad»</text>
+<text x="750.0" y="74.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">Cliente</text>
+<polyline points="620.0,88.0 880.0,88.0" fill="none" stroke="#9D174D" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="630.0" y="106.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_cliente: int {PK}</text>
+<text x="630.0" y="128.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- nombre: string</text>
+<text x="630.0" y="150.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- apellidos: string</text>
+<text x="630.0" y="172.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- telefono: string</text>
+<text x="630.0" y="194.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- correo: string {UQ}</text>
+<text x="630.0" y="216.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- direccion: string</text>
+<rect x="1560" y="300" width="260" height="198" fill="#FFF" stroke="#9D174D" stroke-width="1.6"/>
+<rect x="1560" y="300" width="260" height="48" fill="#9D174D" opacity=".12"/>
+<text x="1690.0" y="316.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#9D174D" text-anchor="middle">«entidad»</text>
+<text x="1690.0" y="334.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">Empleado</text>
+<polyline points="1560.0,348.0 1820.0,348.0" fill="none" stroke="#9D174D" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="1570.0" y="366.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_empleado: int {PK}</text>
+<text x="1570.0" y="388.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- nombre: string</text>
+<text x="1570.0" y="410.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- usuario: string {UQ}</text>
+<text x="1570.0" y="432.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- contrasena_hash: string</text>
+<text x="1570.0" y="454.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- rol: string</text>
+<text x="1570.0" y="476.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- activo: bool</text>
+<rect x="60" y="330" width="260" height="220" fill="#FFF" stroke="#9D174D" stroke-width="1.6"/>
+<rect x="60" y="330" width="260" height="48" fill="#9D174D" opacity=".12"/>
+<text x="190.0" y="346.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#9D174D" text-anchor="middle">«entidad»</text>
+<text x="190.0" y="364.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">Articulo</text>
+<polyline points="60.0,378.0 320.0,378.0" fill="none" stroke="#9D174D" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="70.0" y="396.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_articulo: int {PK}</text>
+<text x="70.0" y="418.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- id_categoria: int {FK}</text>
+<text x="70.0" y="440.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- nombre: string</text>
+<text x="70.0" y="462.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- descripcion: string</text>
+<text x="70.0" y="484.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- cantidad_total: int</text>
+<text x="70.0" y="506.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- precio_dia: decimal</text>
+<text x="70.0" y="528.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- activo: bool</text>
+<rect x="620" y="330" width="260" height="220" fill="#FFF" stroke="#9D174D" stroke-width="1.6"/>
+<rect x="620" y="330" width="260" height="48" fill="#9D174D" opacity=".12"/>
+<text x="750.0" y="346.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#9D174D" text-anchor="middle">«entidad»</text>
+<text x="750.0" y="364.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">Reservacion</text>
+<polyline points="620.0,378.0 880.0,378.0" fill="none" stroke="#9D174D" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="630.0" y="396.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_reservacion: int {PK}</text>
+<text x="630.0" y="418.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- id_cliente: int {FK}</text>
+<text x="630.0" y="440.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- fecha_registro: DateTime</text>
+<text x="630.0" y="462.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- fecha_inicio: Date</text>
+<text x="630.0" y="484.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- fecha_fin: Date</text>
+<text x="630.0" y="506.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- lugar_evento: string</text>
+<text x="630.0" y="528.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- estado: string</text>
+<rect x="340" y="690" width="260" height="154" fill="#FFF" stroke="#A16207" stroke-width="1.6"/>
+<rect x="340" y="690" width="260" height="48" fill="#A16207" opacity=".12"/>
+<text x="470.0" y="706.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#A16207" text-anchor="middle">«asociativa»</text>
+<text x="470.0" y="724.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">DetalleReservacion</text>
+<polyline points="340.0,738.0 600.0,738.0" fill="none" stroke="#A16207" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="350.0" y="756.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_reservacion: int {PK, FK}</text>
+<text x="350.0" y="778.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_articulo: int {PK, FK}</text>
+<text x="350.0" y="800.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- cantidad: int</text>
+<text x="350.0" y="822.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- precio_unitario: decimal</text>
+<rect x="1120" y="190" width="260" height="176" fill="#FFF" stroke="#9D174D" stroke-width="1.6"/>
+<rect x="1120" y="190" width="260" height="48" fill="#9D174D" opacity=".12"/>
+<text x="1250.0" y="206.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#9D174D" text-anchor="middle">«entidad»</text>
+<text x="1250.0" y="224.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">Entrega</text>
+<polyline points="1120.0,238.0 1380.0,238.0" fill="none" stroke="#9D174D" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="1130.0" y="256.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_entrega: int {PK}</text>
+<text x="1130.0" y="278.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- id_reservacion: int {FK, UQ}</text>
+<text x="1130.0" y="300.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- id_empleado: int {FK}</text>
+<text x="1130.0" y="322.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- fecha_hora: DateTime</text>
+<text x="1130.0" y="344.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- observaciones: string</text>
+<rect x="1120" y="480" width="260" height="176" fill="#FFF" stroke="#9D174D" stroke-width="1.6"/>
+<rect x="1120" y="480" width="260" height="48" fill="#9D174D" opacity=".12"/>
+<text x="1250.0" y="496.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#9D174D" text-anchor="middle">«entidad»</text>
+<text x="1250.0" y="514.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">Devolucion</text>
+<polyline points="1120.0,528.0 1380.0,528.0" fill="none" stroke="#9D174D" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="1130.0" y="546.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_devolucion: int {PK}</text>
+<text x="1130.0" y="568.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- id_reservacion: int {FK, UQ}</text>
+<text x="1130.0" y="590.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- id_empleado: int {FK}</text>
+<text x="1130.0" y="612.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- fecha_hora: DateTime</text>
+<text x="1130.0" y="634.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- observaciones: string</text>
+<rect x="1120" y="800" width="260" height="154" fill="#FFF" stroke="#6D28D9" stroke-width="1.6"/>
+<rect x="1120" y="800" width="260" height="48" fill="#6D28D9" opacity=".12"/>
+<text x="1250.0" y="816.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#6D28D9" text-anchor="middle">«débil»</text>
+<text x="1250.0" y="834.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#2A1424" text-anchor="middle">DetalleDevolucion</text>
+<polyline points="1120.0,848.0 1380.0,848.0" fill="none" stroke="#6D28D9" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="1130.0" y="866.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_devolucion: int {PK, FK}</text>
+<text x="1130.0" y="888.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start" text-decoration="underline">- id_articulo: int {PK, FK}</text>
+<text x="1130.0" y="910.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- cantidad_devuelta: int</text>
+<text x="1130.0" y="932.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#2A1424" text-anchor="start">- cantidad_danada: int</text>
+<text x="757.0" y="260.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="757.0" y="312.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">0..*</text>
+<text x="197.0" y="214.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="197.0" y="312.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">0..*</text>
+<text x="705.0" y="572.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="529.0" y="672.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1..*</text>
+<text x="249.0" y="572.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="425.0" y="672.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">0..*</text>
+<text x="890.0" y="387.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1110.0" y="269.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="end">0..1</text>
+<text x="890.0" y="475.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1110.0" y="559.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="end">0..1</text>
+<text x="1550.0" y="350.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="end">1</text>
+<text x="1390.0" y="269.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">0..*</text>
+<text x="1550.0" y="429.6" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="end">1</text>
+<text x="1390.0" y="559.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">0..*</text>
+<text x="1257.0" y="678.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1257.0" y="782.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1..*</text>
+<polygon points="1250.0,656.0 1243.0,666.0 1250.0,676.0 1257.0,666.0" fill="#3F2A37"/>
+<text x="119.0" y="572.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1110.0" y="868.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1D4ED8" text-anchor="end">0..*</text>
+<text x="40.0" y="960.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#6B5866" text-anchor="start">Multiplicidades en azul. Rombo relleno = composición (DetalleDevolucion no existe sin su Devolucion).</text>
+<text x="40.0" y="980.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#6B5866" text-anchor="start">DetalleReservacion es la clase que resuelve la asociación N:M entre Reservacion y Articulo (guarda cantidad y precio).</text>
+</svg>

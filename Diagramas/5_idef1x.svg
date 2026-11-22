@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1860" height="1010" viewBox="0 0 1860 1010">
+<title>Modelo IDEF1X - Rentas de mobiliario</title>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="40.0" y="30.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#2A1424" text-anchor="start">Modelo de datos · notación IDEF1X</text>
+<polyline points="750.0,216.0 750.0,273.0 750.0,273.0 750.0,330.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<rect x="721.9" y="261.0" width="56.2" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="750.0" y="274.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">realiza</text>
+<polyline points="190.0,170.0 190.0,250.0 190.0,250.0 190.0,330.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<rect x="155.3" y="238.0" width="69.4" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="190.0" y="251.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">clasifica</text>
+<polyline points="698.0,528.0 698.0,640.0 522.0,640.0 522.0,690.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="581.9" y="628.0" width="56.2" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="610.0" y="641.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">incluye</text>
+<polyline points="242.0,528.0 242.0,640.0 418.0,640.0 418.0,690.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="288.7" y="628.0" width="82.6" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="330.0" y="641.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">se renta en</text>
+<polyline points="880.0,389.4 1000.0,389.4 1000.0,267.0 1120.0,267.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<rect x="962.0" y="316.2" width="76.0" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1000.0" y="329.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">se entrega</text>
+<polyline points="880.0,468.6 1000.0,468.6 1000.0,557.0 1120.0,557.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<rect x="958.7" y="500.8" width="82.6" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1000.0" y="513.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">se devuelve</text>
+<polyline points="1560.0,352.8 1470.0,352.8 1470.0,267.0 1380.0,267.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<rect x="1438.6" y="297.9" width="62.8" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1470.0" y="310.9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">registra</text>
+<polyline points="1560.0,423.2 1470.0,423.2 1470.0,557.0 1380.0,557.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-dasharray="7 5" stroke-linejoin="round"/>
+<rect x="1445.2" y="478.1" width="49.6" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1470.0" y="491.1" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">recibe</text>
+<polyline points="1250.0,634.0 1250.0,717.0 1250.0,717.0 1250.0,800.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="1221.9" y="705.0" width="56.2" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="1250.0" y="718.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">detalla</text>
+<polyline points="112.0,528.0 112.0,866.0 1120.0,866.0" fill="none" stroke="#3F2A37" stroke-width="1.6" stroke-linejoin="round"/>
+<rect x="571.4" y="854.0" width="89.2" height="16" rx="4" fill="#FFFFFF" opacity=".92"/>
+<text x="616.0" y="867.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="middle" font-style="italic">se revisa en</text>
+<rect x="58" y="41" width="82" height="20" rx="4" fill="#FFF"/>
+<text x="62.0" y="56.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#9D174D" text-anchor="start">CATEGORIA</text>
+<rect x="60" y="66" width="260" height="104" rx="0" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="60.0,98.0 320.0,98.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="72.0" y="88.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_categoria</text>
+<text x="72.0" y="118.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">nombre (AK1)</text>
+<text x="72.0" y="140.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">descripcion</text>
+<rect x="618" y="21" width="65" height="20" rx="4" fill="#FFF"/>
+<text x="622.0" y="36.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#9D174D" text-anchor="start">CLIENTE</text>
+<rect x="620" y="46" width="260" height="170" rx="0" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="620.0,78.0 880.0,78.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="632.0" y="68.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_cliente</text>
+<text x="632.0" y="98.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">nombre</text>
+<text x="632.0" y="120.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">apellidos</text>
+<text x="632.0" y="142.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">telefono</text>
+<text x="632.0" y="164.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">correo (AK1)</text>
+<text x="632.0" y="186.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">direccion</text>
+<rect x="1558" y="281" width="74" height="20" rx="4" fill="#FFF"/>
+<text x="1562.0" y="296.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#9D174D" text-anchor="start">EMPLEADO</text>
+<rect x="1560" y="306" width="260" height="170" rx="0" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="1560.0,338.0 1820.0,338.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="1572.0" y="328.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_empleado</text>
+<text x="1572.0" y="358.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">nombre</text>
+<text x="1572.0" y="380.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">usuario (AK1)</text>
+<text x="1572.0" y="402.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">contrasena_hash</text>
+<text x="1572.0" y="424.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">rol</text>
+<text x="1572.0" y="446.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">activo</text>
+<rect x="58" y="311" width="74" height="20" rx="4" fill="#FFF"/>
+<text x="62.0" y="326.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#9D174D" text-anchor="start">ARTICULO</text>
+<rect x="60" y="336" width="260" height="192" rx="0" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="60.0,368.0 320.0,368.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="72.0" y="358.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_articulo</text>
+<text x="72.0" y="388.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">id_categoria (FK)</text>
+<text x="72.0" y="410.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">nombre</text>
+<text x="72.0" y="432.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">descripcion</text>
+<text x="72.0" y="454.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">cantidad_total</text>
+<text x="72.0" y="476.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">precio_dia</text>
+<text x="72.0" y="498.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">activo</text>
+<rect x="618" y="311" width="98" height="20" rx="4" fill="#FFF"/>
+<text x="622.0" y="326.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#9D174D" text-anchor="start">RESERVACION</text>
+<rect x="620" y="336" width="260" height="192" rx="0" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="620.0,368.0 880.0,368.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="632.0" y="358.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_reservacion</text>
+<text x="632.0" y="388.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">id_cliente (FK)</text>
+<text x="632.0" y="410.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">fecha_registro</text>
+<text x="632.0" y="432.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">fecha_inicio</text>
+<text x="632.0" y="454.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">fecha_fin</text>
+<text x="632.0" y="476.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">lugar_evento</text>
+<text x="632.0" y="498.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">estado</text>
+<rect x="338" y="671" width="164" height="20" rx="4" fill="#FFF"/>
+<text x="342.0" y="686.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#A16207" text-anchor="start">DETALLE_RESERVACION</text>
+<rect x="340" y="696" width="260" height="126" rx="14" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="340.0,750.0 600.0,750.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="352.0" y="718.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_reservacion (FK)</text>
+<text x="352.0" y="740.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_articulo (FK)</text>
+<text x="352.0" y="770.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">cantidad</text>
+<text x="352.0" y="792.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">precio_unitario</text>
+<rect x="1118" y="171" width="65" height="20" rx="4" fill="#FFF"/>
+<text x="1122.0" y="186.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#9D174D" text-anchor="start">ENTREGA</text>
+<rect x="1120" y="196" width="260" height="148" rx="0" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="1120.0,228.0 1380.0,228.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="1132.0" y="218.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_entrega</text>
+<text x="1132.0" y="248.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">id_reservacion (FK) (AK1)</text>
+<text x="1132.0" y="270.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">id_empleado (FK)</text>
+<text x="1132.0" y="292.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">fecha_hora</text>
+<text x="1132.0" y="314.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">observaciones</text>
+<rect x="1118" y="461" width="90" height="20" rx="4" fill="#FFF"/>
+<text x="1122.0" y="476.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#9D174D" text-anchor="start">DEVOLUCION</text>
+<rect x="1120" y="486" width="260" height="148" rx="0" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="1120.0,518.0 1380.0,518.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="1132.0" y="508.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_devolucion</text>
+<text x="1132.0" y="538.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">id_reservacion (FK) (AK1)</text>
+<text x="1132.0" y="560.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">id_empleado (FK)</text>
+<text x="1132.0" y="582.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">fecha_hora</text>
+<text x="1132.0" y="604.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">observaciones</text>
+<rect x="1118" y="781" width="156" height="20" rx="4" fill="#FFF"/>
+<text x="1122.0" y="796.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#6D28D9" text-anchor="start">DETALLE_DEVOLUCION</text>
+<rect x="1120" y="806" width="260" height="126" rx="14" fill="#FFF" stroke="#2A1424" stroke-width="1.6"/>
+<polyline points="1120.0,860.0 1380.0,860.0" fill="none" stroke="#2A1424" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="1132.0" y="828.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_devolucion (FK)</text>
+<text x="1132.0" y="850.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2A1424" text-anchor="start">id_articulo (FK)</text>
+<text x="1132.0" y="880.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">cantidad_devuelta</text>
+<text x="1132.0" y="902.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="normal" fill="#2A1424" text-anchor="start">cantidad_danada</text>
+<circle cx="750.0" cy="325.0" r="5" fill="#2A1424"/>
+<circle cx="190.0" cy="325.0" r="5" fill="#2A1424"/>
+<circle cx="522.0" cy="685.0" r="5" fill="#2A1424"/>
+<text x="532.0" y="680.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#1D4ED8" text-anchor="start">P</text>
+<circle cx="418.0" cy="685.0" r="5" fill="#2A1424"/>
+<circle cx="1115.0" cy="267.0" r="5" fill="#2A1424"/>
+<text x="1106.0" y="259.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#1D4ED8" text-anchor="start">Z</text>
+<circle cx="1115.0" cy="557.0" r="5" fill="#2A1424"/>
+<text x="1106.0" y="549.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#1D4ED8" text-anchor="start">Z</text>
+<circle cx="1385.0" cy="267.0" r="5" fill="#2A1424"/>
+<circle cx="1385.0" cy="557.0" r="5" fill="#2A1424"/>
+<circle cx="1250.0" cy="795.0" r="5" fill="#2A1424"/>
+<text x="1260.0" y="790.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#1D4ED8" text-anchor="start">P</text>
+<circle cx="1115.0" cy="866.0" r="5" fill="#2A1424"/>
+<text x="40.0" y="940.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#6B5866" text-anchor="start">Caja con esquinas rectas = entidad independiente; esquinas redondeadas = entidad dependiente (su PK incluye una FK).</text>
+<text x="40.0" y="960.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#6B5866" text-anchor="start">Sobre la línea horizontal de cada caja va la llave primaria. Línea continua = identificante; punteada = no identificante.</text>
+<text x="40.0" y="980.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#6B5866" text-anchor="start">Punto en el extremo hijo: cero o muchos · P = uno o muchos · Z = cero o uno · (AK1) = llave alterna (UNIQUE).</text>
+</svg>

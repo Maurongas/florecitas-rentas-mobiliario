@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1320" viewBox="0 0 2000 1320">
+<title>DER notación clásica de Chen - Rentas de mobiliario</title>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="40.0" y="36.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#2A1424" text-anchor="start">Diagrama Entidad-Relación · notación clásica (Chen)</text>
+<polyline points="840.0,226.0 840.0,405.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="837.0,405.0 837.0,584.0" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="843.0,405.0 843.0,584.0" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="840.0,371.0 912.0,405.0 840.0,439.0 768.0,405.0" fill="#FFF7FB" stroke="#3F2A37" stroke-width="1.6"/>
+<text x="840.0" y="409.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#2A1424" text-anchor="middle">realiza</text>
+<text x="848.0" y="255.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="848.0" y="542.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">N</text>
+<polyline points="260.0,226.0 260.0,405.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="257.0,405.0 257.0,584.0" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="263.0,405.0 263.0,584.0" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="260.0,371.0 332.0,405.0 260.0,439.0 188.0,405.0" fill="#FFF7FB" stroke="#3F2A37" stroke-width="1.6"/>
+<text x="260.0" y="409.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#2A1424" text-anchor="middle">clasifica</text>
+<text x="268.0" y="255.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="268.0" y="542.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">N</text>
+<polyline points="817.9,634.2 577.3,952.2" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="822.7,637.8 582.1,955.8" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<text x="770.2" y="709.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="637.8" y="890.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">N</text>
+<text x="712.0" y="795.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="start" font-style="italic">incluye</text>
+<polyline points="281.1,636.0 538.9,954.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="355.5" y="709.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="497.4" y="890.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">N</text>
+<text x="422.0" y="795.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="normal" fill="#6B5866" text-anchor="start" font-style="italic">se renta en</text>
+<polyline points="892.0,584.0 1070.0,495.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="1071.3,497.7 1249.3,408.7" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="1068.7,492.3 1246.7,403.3" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="1070.0,461.0 1142.0,495.0 1070.0,529.0 998.0,495.0" fill="#FFF7FB" stroke="#3F2A37" stroke-width="1.6"/>
+<text x="1070.0" y="499.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#2A1424" text-anchor="middle">se entrega</text>
+<text x="935.6" y="560.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1220.4" y="417.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<polyline points="899.8,636.0 1070.0,710.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="1068.8,712.8 1239.0,786.8" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="1071.2,707.2 1241.4,781.2" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="1070.0,676.0 1142.0,710.0 1070.0,744.0 998.0,710.0" fill="#FFF7FB" stroke="#3F2A37" stroke-width="1.6"/>
+<text x="1070.0" y="714.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#2A1424" text-anchor="middle">se devuelve</text>
+<text x="941.8" y="644.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1214.2" y="763.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<polyline points="1662.5,544.0 1510.0,475.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="1511.2,472.3 1358.7,403.3" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="1508.8,477.7 1356.2,408.7" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="1510.0,441.0 1582.0,475.0 1510.0,509.0 1438.0,475.0" fill="#FFF7FB" stroke="#3F2A37" stroke-width="1.6"/>
+<text x="1510.0" y="479.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#2A1424" text-anchor="middle">registra</text>
+<text x="1640.0" y="524.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1396.0" y="413.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">N</text>
+<polyline points="1674.5,596.0 1510.0,690.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="1508.5,687.4 1344.0,781.4" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="1511.5,692.6 1347.0,786.6" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="1510.0,656.0 1582.0,690.0 1510.0,724.0 1438.0,690.0" fill="#FFF7FB" stroke="#3F2A37" stroke-width="1.6"/>
+<text x="1510.0" y="694.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#2A1424" text-anchor="middle">recibe</text>
+<text x="1649.6" y="608.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1386.4" y="759.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">N</text>
+<polyline points="1300.0,836.0 1300.0,985.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="1297.0,985.0 1297.0,1134.0" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="1303.0,985.0 1303.0,1134.0" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="1300.0,951.0 1372.0,985.0 1300.0,1019.0 1228.0,985.0" fill="#FFF7FB" stroke="#3F2A37" stroke-width="1.6"/>
+<polygon points="1300.0,957.0 1362.0,985.0 1300.0,1013.0 1238.0,985.0" fill="none" stroke="#3F2A37" stroke-width="1.2"/>
+<text x="1300.0" y="989.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#2A1424" text-anchor="middle">detalla</text>
+<text x="1308.0" y="859.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1308.0" y="1098.2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">N</text>
+<polyline points="260.0,636.0 260.0,1160.0 628.0,1160.0" fill="none" stroke="#3F2A37" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="772.0,1163.0 1205.0,1163.0" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polyline points="772.0,1157.0 1205.0,1157.0" fill="none" stroke="#3F2A37" stroke-width="1.4" stroke-linejoin="round"/>
+<polygon points="700,1126 772,1160 700,1194 628,1160" fill="#FFF7FB" stroke="#3F2A37" stroke-width="1.6"/>
+<polygon points="700,1132 762,1160 700,1188 638,1160" fill="none" stroke="#3F2A37" stroke-width="1.2"/>
+<text x="700.0" y="1164.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="bold" fill="#2A1424" text-anchor="middle">se revisa en</text>
+<text x="270.0" y="666.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">1</text>
+<text x="1112.0" y="1154.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8" text-anchor="start">N</text>
+<rect x="165.0" y="174.0" width="190" height="52" fill="#FFF" stroke="#9D174D" stroke-width="2"/>
+<text x="260.0" y="205.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#9D174D" text-anchor="middle">CATEGORIA</text>
+<polyline points="188.6,226.0 147.2,241.0" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="147.2" cy="241.0" rx="63.2" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="147.2" y="245.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#2A1424" text-anchor="middle" text-decoration="underline">id_categoria</text>
+<polyline points="260.0,174.0 260.0,80.0" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="260.0" cy="80.0" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="260.0" y="84.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">nombre</text>
+<polyline points="331.4,226.0 372.8,241.0" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="372.8" cy="241.0" rx="59.1" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="372.8" y="245.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">descripcion</text>
+<rect x="745.0" y="174.0" width="190" height="52" fill="#FFF" stroke="#9D174D" stroke-width="2"/>
+<text x="840.0" y="205.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#9D174D" text-anchor="middle">CLIENTE</text>
+<polyline points="795.0,226.0 723.1,267.5" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="723.1" cy="267.5" rx="55.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="723.1" y="271.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#2A1424" text-anchor="middle" text-decoration="underline">id_cliente</text>
+<polyline points="745.0,183.2 707.1,176.6" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="707.1" cy="176.6" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="707.1" y="180.6" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">nombre</text>
+<polyline points="821.8,174.0 762.6,89.4" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="762.6" cy="89.4" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="762.6" y="93.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">apellidos</text>
+<polyline points="858.2,174.0 917.4,89.4" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="917.4" cy="89.4" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="917.4" y="93.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">telefono</text>
+<polyline points="935.0,183.2 972.9,176.6" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="972.9" cy="176.6" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="972.9" y="180.6" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">correo</text>
+<polyline points="885.0,226.0 956.9,267.5" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="956.9" cy="267.5" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="956.9" y="271.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">direccion</text>
+<rect x="1625.0" y="544.0" width="190" height="52" fill="#FFF" stroke="#9D174D" stroke-width="2"/>
+<text x="1720.0" y="575.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#9D174D" text-anchor="middle">EMPLEADO</text>
+<polyline points="1717.7,544.0 1708.2,435.5" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1708.2" cy="435.5" rx="59.1" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1708.2" y="439.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#2A1424" text-anchor="middle" text-decoration="underline">id_empleado</text>
+<polyline points="1738.2,544.0 1797.4,459.4" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1797.4" cy="459.4" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1797.4" y="463.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">nombre</text>
+<polyline points="1800.0,544.0 1848.4,528.3" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1848.4" cy="528.3" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1848.4" y="532.3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">usuario</text>
+<polyline points="1800.0,596.0 1848.4,611.7" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1848.4" cy="611.7" rx="75.5" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1848.4" y="615.7" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">contrasena_hash</text>
+<polyline points="1738.2,596.0 1797.4,680.6" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1797.4" cy="680.6" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1797.4" y="684.6" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">rol</text>
+<polyline points="1717.7,596.0 1708.2,704.5" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1708.2" cy="704.5" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1708.2" y="708.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">activo</text>
+<rect x="165.0" y="584.0" width="190" height="52" fill="#FFF" stroke="#9D174D" stroke-width="2"/>
+<text x="260.0" y="615.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#9D174D" text-anchor="middle">ARTICULO</text>
+<polyline points="241.8,636.0 174.0,732.9" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="174.0" cy="732.9" rx="59.1" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="174.0" y="736.9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#2A1424" text-anchor="middle" text-decoration="underline">id_articulo</text>
+<polyline points="218.4,636.0 132.8,689.5" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="132.8" cy="689.5" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="132.8" y="693.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">nombre</text>
+<polyline points="165.0,625.0 111.8,633.5" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="111.8" cy="633.5" rx="59.1" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="111.8" y="637.5" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">descripcion</text>
+<polyline points="165.0,586.3 114.5,573.7" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="114.5" cy="573.7" rx="71.4" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="114.5" y="577.7" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">cantidad_total</text>
+<polyline points="225.5,584.0 140.2,519.7" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="140.2" cy="519.7" rx="55.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="140.2" y="523.7" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">precio_dia</text>
+<polyline points="245.0,584.0 185.0,480.1" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="185.0" cy="480.1" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="185.0" y="484.1" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">activo</text>
+<rect x="745.0" y="584.0" width="190" height="52" fill="#FFF" stroke="#9D174D" stroke-width="2"/>
+<text x="840.0" y="615.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#9D174D" text-anchor="middle">RESERVACION</text>
+<polyline points="745.0,635.5 680.6,652.7" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="680.6" cy="652.7" rx="71.4" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="680.6" y="656.7" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#2A1424" text-anchor="middle" text-decoration="underline">id_reservacion</text>
+<polyline points="745.0,600.0 675.9,592.8" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="675.9" cy="592.8" rx="63.2" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="675.9" y="596.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">fecha_inicio</text>
+<polyline points="789.0,584.0 693.0,535.1" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="693.0" cy="535.1" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="693.0" y="539.1" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">fecha_fin</text>
+<polyline points="816.6,584.0 729.6,487.4" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="729.6" cy="487.4" rx="63.2" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="729.6" y="491.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">lugar_evento</text>
+<polyline points="830.0,584.0 780.9,456.0" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="780.9" cy="456.0" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="780.9" y="460.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">estado</text>
+<polyline points="847.0,636.0 882.7,769.4" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="882.7" cy="769.4" rx="71.4" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="882.7" y="773.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">fecha_registro</text>
+<polyline points="831.6,636.0 776.7,805.0" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="776.7" cy="805.0" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3" stroke-dasharray="5 4"/>
+<text x="776.7" y="809.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">total</text>
+<rect x="465.0" y="954.0" width="190" height="52" fill="#FFF" stroke="#A16207" stroke-width="2"/>
+<polygon points="560,957.0 649.0,980 560,1003.0 471.0,980" fill="none" stroke="#A16207" stroke-width="1.2"/>
+<text x="560.0" y="985.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#A16207" text-anchor="middle">DET. RESERVACION</text>
+<polyline points="545.0,1006.0 485.0,1109.9" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="485.0" cy="1109.9" rx="52.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="485.0" y="1113.9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">cantidad</text>
+<polyline points="465.0,1005.5 415.1,1018.8" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="415.1" cy="1018.8" rx="75.5" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="415.1" y="1022.8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">precio_unitario</text>
+<rect x="1205.0" y="354.0" width="190" height="52" fill="#FFF" stroke="#9D174D" stroke-width="2"/>
+<text x="1300.0" y="385.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#9D174D" text-anchor="middle">ENTREGA</text>
+<polyline points="1262.9,354.0 1209.9,316.9" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1209.9" cy="316.9" rx="55.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1209.9" y="320.9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#2A1424" text-anchor="middle" text-decoration="underline">id_entrega</text>
+<polyline points="1300.0,354.0 1300.0,270.0" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1300.0" cy="270.0" rx="55.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1300.0" y="274.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">fecha_hora</text>
+<polyline points="1337.1,354.0 1390.1,316.9" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1390.1" cy="316.9" rx="67.3" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1390.1" y="320.9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">observaciones</text>
+<rect x="1205.0" y="784.0" width="190" height="52" fill="#FFF" stroke="#9D174D" stroke-width="2"/>
+<text x="1300.0" y="815.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#9D174D" text-anchor="middle">DEVOLUCION</text>
+<polyline points="1395.0,801.7 1449.4,796.9" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1449.4" cy="796.9" rx="67.3" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1449.4" y="800.9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#2A1424" text-anchor="middle" text-decoration="underline">id_devolucion</text>
+<polyline points="1355.8,836.0 1435.9,873.4" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1435.9" cy="873.4" rx="55.0" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1435.9" y="877.4" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">fecha_hora</text>
+<polyline points="1318.2,836.0 1386.0,932.9" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1386.0" cy="932.9" rx="67.3" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1386.0" y="936.9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">observaciones</text>
+<rect x="1205.0" y="1134.0" width="190" height="52" fill="#FFF" stroke="#6D28D9" stroke-width="2"/>
+<rect x="1210.0" y="1139.0" width="180" height="42" fill="none" stroke="#6D28D9" stroke-width="1.4"/>
+<text x="1300.0" y="1165.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#6D28D9" text-anchor="middle">DET. DEVOLUCION</text>
+<polyline points="1255.0,1186.0 1152.8,1245.0" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1152.8" cy="1245.0" rx="75.5" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1152.8" y="1249.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">cantidad_danada</text>
+<polyline points="1255.0,1134.0 1152.8,1075.0" fill="none" stroke="#8E7A88" stroke-width="1.1" stroke-linejoin="round"/>
+<ellipse cx="1152.8" cy="1075.0" rx="83.7" ry="16" fill="#FFF" stroke="#8E7A88" stroke-width="1.3"/>
+<text x="1152.8" y="1079.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="normal" fill="#2A1424" text-anchor="middle">cantidad_devuelta</text>
+<rect x="1500" y="1060" width="460" height="230" rx="8" fill="#FBF7FA" stroke="#EDE1E8"/>
+<text x="1514.0" y="1084.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#2A1424" text-anchor="start">Simbología (Chen)</text>
+<text x="1514.0" y="1112.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#2A1424" text-anchor="start">• Rectángulo: entidad fuerte · doble rectángulo: entidad débil</text>
+<text x="1514.0" y="1136.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#2A1424" text-anchor="start">• Rectángulo con rombo: entidad asociativa (resuelve N:M)</text>
+<text x="1514.0" y="1160.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#2A1424" text-anchor="start">• Rombo: relación · doble rombo: relación identificante</text>
+<text x="1514.0" y="1184.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#2A1424" text-anchor="start">• Óvalo: atributo · subrayado: identificador</text>
+<text x="1514.0" y="1208.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#2A1424" text-anchor="start">• Óvalo punteado: atributo derivado (/total, no se guarda)</text>
+<text x="1514.0" y="1232.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#2A1424" text-anchor="start">• Línea doble: participación total (obligatoria)</text>
+<text x="1514.0" y="1256.0" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#2A1424" text-anchor="start">• 1 / N: cardinalidad máxima de cada lado</text>
+</svg>
