@@ -1,0 +1,15 @@
++---------------------+-------+
+| tabla               | filas |
++---------------------+-------+
+| categoria           |     5 |
+| articulo            |    17 |
+| cliente             |    22 |
+| empleado            |     4 |
+| reservacion         |    31 |
+| detalle_reservacion |    94 |
+| entrega             |    19 |
+| devolucion          |    16 |
+| detalle_devolucion  |    51 |
+| historial_precio    |     3 |
+| bitacora            |    68 |
++---------------------+-------+

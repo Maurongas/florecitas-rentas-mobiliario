@@ -1,0 +1,31 @@
++--------------+-------------------------+
+| ROUTINE_TYPE | ROUTINE_NAME            |
++--------------+-------------------------+
+| FUNCTION     | fn_dias_renta           |
+| FUNCTION     | fn_disponible           |
+| FUNCTION     | fn_total_reservacion    |
+| PROCEDURE    | sp_cancelar_reservacion |
+| PROCEDURE    | sp_crear_reservacion    |
+| PROCEDURE    | sp_disponibilidad_rango |
+| PROCEDURE    | sp_registrar_devolucion |
+| PROCEDURE    | sp_registrar_entrega    |
++--------------+-------------------------+
++------------------------+------------+
+| TABLE_NAME             | TABLE_TYPE |
++------------------------+------------+
+| articulo               | BASE TABLE |
+| bitacora               | BASE TABLE |
+| categoria              | BASE TABLE |
+| cliente                | BASE TABLE |
+| detalle_devolucion     | BASE TABLE |
+| detalle_reservacion    | BASE TABLE |
+| devolucion             | BASE TABLE |
+| empleado               | BASE TABLE |
+| entrega                | BASE TABLE |
+| historial_precio       | BASE TABLE |
+| reservacion            | BASE TABLE |
+| vw_agenda_operativa    | VIEW       |
+| vw_articulo_desempeno  | VIEW       |
+| vw_faltantes_danos     | VIEW       |
+| vw_reservacion_resumen | VIEW       |
++------------------------+------------+

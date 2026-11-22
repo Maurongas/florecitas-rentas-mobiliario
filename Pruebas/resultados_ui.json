@@ -1,0 +1,205 @@
+[
+  {
+    "id": "UI-01",
+    "descripcion": "Inicio de sesión con contraseña incorrecta",
+    "esperado": "Mensaje de error, sin acceso",
+    "observado": "Usuario o contraseña incorrectos.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-02",
+    "descripcion": "Inicio de sesión del Administrador",
+    "esperado": "Entra al tablero",
+    "observado": "Tablero · Florecitas Rentas",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-03",
+    "descripcion": "Disponibilidad de sillas Tiffany el viernes 2026-12-04 (ejemplo del análisis)",
+    "esperado": "10 disponibles (100 - 60 - 30)",
+    "observado": "10 disponibles",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-04",
+    "descripcion": "Reservar 20 sillas Tiffany el viernes (solo hay 10)",
+    "esperado": "La BD rechaza (RN-03) y el formulario conserva lo capturado",
+    "observado": "RN-03: Solo hay 10 pieza(s) disponible(s) de \"Silla Tiffany dorada\" del 2026-12-04 al 2026-12-04; se pidieron 20. | datos conservados",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-05",
+    "descripcion": "Crear reservación con 3 artículos por 2 días (sp_crear_reservacion)",
+    "esperado": "Se guarda Confirmada; total calculado por la BD igual al de la vista previa",
+    "observado": "Reservación #34, total vista $1,590.00 / BD $1,590.00",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-06",
+    "descripcion": "Cambiar la cantidad de sillas plegables a 999 en la reservación",
+    "esperado": "Trigger trg_detres_bu rechaza (RN-03)",
+    "observado": "RN-03: Solo hay 150 pieza(s) disponible(s) para esas fechas; se pidieron 999.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-07",
+    "descripcion": "Registrar entrega (sp_registrar_entrega + trigger trg_entrega_ai)",
+    "esperado": "Estado cambia a Entregada",
+    "observado": "Estado: Entregada. Entrega registrada. La reservación ahora está Entregada.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-08",
+    "descripcion": "Devolución con devueltas + dañadas mayor que lo rentado",
+    "esperado": "Rechazo por RN-10",
+    "observado": "RN-10 · Mantel redondo blanco: devueltas (3) + dañadas (2) supera lo rentado (3).",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-09",
+    "descripcion": "Devolución válida con 2 dañadas y 1 faltante (sp_registrar_devolucion)",
+    "esperado": "Estado Finalizada y revisión visible",
+    "observado": "Estado: Finalizada. Devolución registrada con 2 pieza(s) dañada(s) y 1 faltante(s). Reservación finalizada.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-10",
+    "descripcion": "Cancelar una reservación Confirmada (sp_cancelar_reservacion)",
+    "esperado": "Estado Cancelada y piezas liberadas",
+    "observado": "#35 Cancelada",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-11",
+    "descripcion": "Búsqueda sin coincidencias en reservaciones",
+    "esperado": "Estado vacío con mensaje",
+    "observado": "Se muestra estado vacío",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-12",
+    "descripcion": "Alta de cliente con teléfono y correo inválidos",
+    "esperado": "Mensajes de validación junto a cada campo",
+    "observado": "El teléfono debe tener exactamente 10 dígitos.; Escribe un correo válido.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-13",
+    "descripcion": "Alta de cliente con correo ya registrado",
+    "esperado": "Rechazo por UNIQUE (RN-12)",
+    "observado": "Ya existe un registro con ese valor de correo.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-14",
+    "descripcion": "Alta válida de cliente",
+    "esperado": "Se guarda y muestra su ficha",
+    "observado": "Cliente #25. Cliente Lucero registrado.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-15",
+    "descripcion": "Modificar la dirección del cliente",
+    "esperado": "Cambios guardados",
+    "observado": "Cambios guardados.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-16",
+    "descripcion": "Eliminar un cliente sin reservaciones",
+    "esperado": "Se elimina",
+    "observado": "Cliente eliminado.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-17",
+    "descripcion": "Eliminar un cliente con reservaciones",
+    "esperado": "Rechazo por FK ON DELETE RESTRICT (RN-11)",
+    "observado": "No se puede eliminar porque tiene registros relacionados (historial). Use la baja lógica si está disponible.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-18",
+    "descripcion": "Reducir el inventario de sillas plegables a 20",
+    "esperado": "Trigger trg_articulo_bu rechaza (RN-03)",
+    "observado": "RN-03: Hay 150 pieza(s) comprometidas en reservaciones vigentes; la cantidad total no puede ser menor.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-19",
+    "descripcion": "Cambiar el precio del mantel rectangular a $32.50",
+    "esperado": "Se guarda y trg_articulo_au registra el historial",
+    "observado": "1 cambio(s) en historial",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-20",
+    "descripcion": "Alta de un artículo nuevo",
+    "esperado": "Se agrega al catálogo",
+    "observado": "Artículo “Bocina con micrófono” agregado al catálogo.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-21",
+    "descripcion": "Crear categoría Audio",
+    "esperado": "Se crea",
+    "observado": "Categoría “Audio” creada.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-22",
+    "descripcion": "Eliminar la categoría Sillas (tiene artículos)",
+    "esperado": "Rechazo por FK",
+    "observado": "No se puede eliminar porque tiene registros relacionados (historial). Use la baja lógica si está disponible.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-23",
+    "descripcion": "Alta de empleado Encargado con contraseña cifrada",
+    "esperado": "Se registra",
+    "observado": "Empleado Sofía Encargada Prueba registrado.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-24",
+    "descripcion": "Reporte de faltantes y daños (vista vw_faltantes_danos)",
+    "esperado": "Lista las devoluciones con daños",
+    "observado": "6 renglón(es)",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-25",
+    "descripcion": "Exportar reporte a CSV",
+    "esperado": "Descarga un archivo .csv",
+    "observado": "reporte_clientes_20261121.csv",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-26",
+    "descripcion": "Un Encargado intenta abrir Empleados",
+    "esperado": "Acceso denegado (RN-13)",
+    "observado": "http://localhost:5207/Cuenta/AccesoDenegado?ReturnUrl=%2FEmpleados",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-27",
+    "descripcion": "Empleado inactivo intenta iniciar sesión",
+    "esperado": "Se niega el acceso",
+    "observado": "Tu cuenta está inactiva. Consulta al administrador.",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-28",
+    "descripcion": "Persistencia: tras cerrar y reabrir la aplicación, la reservación creada sigue Finalizada",
+    "esperado": "Los datos se leen de MySQL",
+    "observado": "#34 Finalizada",
+    "estado": "PASA"
+  },
+  {
+    "id": "UI-29",
+    "descripcion": "Persistencia: la reservación cancelada sigue Cancelada",
+    "esperado": "Cancelada",
+    "observado": "#35 Cancelada",
+    "estado": "PASA"
+  }
+]
