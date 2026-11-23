@@ -21,6 +21,7 @@ Sistema que controla el inventario de mobiliario y las reservaciones por fecha, 
 ```
 Equipo_Florecitas_ProyectoFinal_BD/
 ├── Reporte.pdf                     Reporte técnico
+├── Presentacion.pdf                Presentación del proyecto
 ├── README.md
 ├── Aplicacion/                     Solución .NET (Florecitas.Rentas.slnx)
 │   └── src/Florecitas.Rentas.Web/
@@ -39,7 +40,8 @@ Equipo_Florecitas_ProyectoFinal_BD/
 │   ├── 06_seguridad_respaldo.sql   Usuario de la app (mínimo privilegio) y respaldo
 │   └── instalar_bd.ps1             Ejecuta todo en orden
 ├── Diagramas/                      5 notaciones (SVG editable + PNG + PDF)
-└── Pruebas/                        Matriz de pruebas, salidas reales, capturas e incidencias
+├── Pruebas/                        Matriz de pruebas, salidas reales, capturas e incidencias
+└── Video/                          Video demostrativo (ProyectoFinal_Florecitas.mp4)
 ```
 
 > `02_rutinas` va antes de los datos para que los datos de prueba también pasen por las reglas de negocio; `05_pruebas` contiene las pruebas de rutinas.
