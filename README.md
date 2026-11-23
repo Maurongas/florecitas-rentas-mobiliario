@@ -40,8 +40,7 @@ Equipo_Florecitas_ProyectoFinal_BD/
 │   └── instalar_bd.ps1             Ejecuta todo en orden
 ├── Diagramas/                      5 notaciones (SVG editable + PNG + PDF) y su generador
 ├── Pruebas/                        Matriz de pruebas, salidas reales, capturas, incidencias, e2e
-├── docs/                           Fuentes del reporte y guía de colaboración
-└── Video/                          (aquí va el video demostrativo de 5 a 8 minutos)
+└── Video/                          Video demostrativo de 5 a 8 minutos
 ```
 
 > Equivalencia con la estructura pedida: `02_rutinas` va antes de los datos para que los datos de prueba también pasen por las reglas de negocio; `05_pruebas` contiene las pruebas de rutinas.
@@ -117,7 +116,7 @@ Abrir http://localhost:5207. En Visual Studio: abrir `Aplicacion/Florecitas.Rent
   Genera `Pruebas/resultados_ui.json` y las capturas de `Pruebas/capturas/`.
 - Matriz completa: `Pruebas/matriz_pruebas.csv`. Incidencias reales: `Pruebas/incidencias.md`.
 
-## 5. Regenerar diagramas y reporte
+## 5. Regenerar diagramas
 
 ```powershell
 python Diagramas\generar_diagramas.py
@@ -125,12 +124,4 @@ python Diagramas\generar_diagramas.py
 ```powershell
 python Diagramas\exportar_png.py
 ```
-```powershell
-python docs\reporte\generar_reporte.py --puerto 3306 --usuario root --clave TU_CLAVE
-```
 
-El reporte se arma con datos reales de la BD instalada (diccionario de datos, resultados de consultas y de álgebra relacional), por eso debe ejecutarse justo después de instalarla (sin haber corrido `05_pruebas.sql`).
-
-## Trabajo en equipo con Git
-
-Ver [docs/COLABORACION.md](docs/COLABORACION.md): cada integrante sube su parte desde su propia cuenta de GitHub, en su rama y con commits propios.
