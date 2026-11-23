@@ -40,32 +40,32 @@ P38,SQL (05_pruebas.sql),RN-03,Cambiar las fechas de una reservación a días si
 P39,SQL (05_pruebas.sql),Auditoría,La bitácora registró los cambios de estado de la reservación de prueba (Confirmada->Entregada->Finalizada),Verdadero,La condición se cumple,PASA
 P40,SQL (05_pruebas.sql),Auditoría,Cambio de precio del mantel redondo (35 -> 38),Éxito,Ejecutado sin error,PASA
 P41,SQL (05_pruebas.sql),Auditoría,historial_precio guardó el precio anterior y el nuevo con el empleado de la sesión,Verdadero,La condición se cumple,PASA
-UI-01,Interfaz (e2e_capturas.py),,Inicio de sesión con contraseña incorrecta,"Mensaje de error, sin acceso",Usuario o contraseña incorrectos.,PASA
-UI-02,Interfaz (e2e_capturas.py),,Inicio de sesión del Administrador,Entra al tablero,Tablero · Florecitas Rentas,PASA
-UI-03,Interfaz (e2e_capturas.py),,Disponibilidad de sillas Tiffany el viernes 2026-12-04 (ejemplo del análisis),10 disponibles (100 - 60 - 30),10 disponibles,PASA
-UI-04,Interfaz (e2e_capturas.py),,Reservar 20 sillas Tiffany el viernes (solo hay 10),La BD rechaza (RN-03) y el formulario conserva lo capturado,"RN-03: Solo hay 10 pieza(s) disponible(s) de ""Silla Tiffany dorada"" del 2026-12-04 al 2026-12-04; se pidieron 20. | datos conservados",PASA
-UI-05,Interfaz (e2e_capturas.py),,Crear reservación con 3 artículos por 2 días (sp_crear_reservacion),Se guarda Confirmada; total calculado por la BD igual al de la vista previa,"Reservación #34, total vista $1,590.00 / BD $1,590.00",PASA
-UI-06,Interfaz (e2e_capturas.py),,Cambiar la cantidad de sillas plegables a 999 en la reservación,Trigger trg_detres_bu rechaza (RN-03),RN-03: Solo hay 150 pieza(s) disponible(s) para esas fechas; se pidieron 999.,PASA
-UI-07,Interfaz (e2e_capturas.py),,Registrar entrega (sp_registrar_entrega + trigger trg_entrega_ai),Estado cambia a Entregada,Estado: Entregada. Entrega registrada. La reservación ahora está Entregada.,PASA
-UI-08,Interfaz (e2e_capturas.py),,Devolución con devueltas + dañadas mayor que lo rentado,Rechazo por RN-10,RN-10 · Mantel redondo blanco: devueltas (3) + dañadas (2) supera lo rentado (3).,PASA
-UI-09,Interfaz (e2e_capturas.py),,Devolución válida con 2 dañadas y 1 faltante (sp_registrar_devolucion),Estado Finalizada y revisión visible,Estado: Finalizada. Devolución registrada con 2 pieza(s) dañada(s) y 1 faltante(s). Reservación finalizada.,PASA
-UI-10,Interfaz (e2e_capturas.py),,Cancelar una reservación Confirmada (sp_cancelar_reservacion),Estado Cancelada y piezas liberadas,#35 Cancelada,PASA
-UI-11,Interfaz (e2e_capturas.py),,Búsqueda sin coincidencias en reservaciones,Estado vacío con mensaje,Se muestra estado vacío,PASA
-UI-12,Interfaz (e2e_capturas.py),,Alta de cliente con teléfono y correo inválidos,Mensajes de validación junto a cada campo,El teléfono debe tener exactamente 10 dígitos.; Escribe un correo válido.,PASA
-UI-13,Interfaz (e2e_capturas.py),,Alta de cliente con correo ya registrado,Rechazo por UNIQUE (RN-12),Ya existe un registro con ese valor de correo.,PASA
-UI-14,Interfaz (e2e_capturas.py),,Alta válida de cliente,Se guarda y muestra su ficha,Cliente #25. Cliente Lucero registrado.,PASA
-UI-15,Interfaz (e2e_capturas.py),,Modificar la dirección del cliente,Cambios guardados,Cambios guardados.,PASA
-UI-16,Interfaz (e2e_capturas.py),,Eliminar un cliente sin reservaciones,Se elimina,Cliente eliminado.,PASA
-UI-17,Interfaz (e2e_capturas.py),,Eliminar un cliente con reservaciones,Rechazo por FK ON DELETE RESTRICT (RN-11),No se puede eliminar porque tiene registros relacionados (historial). Use la baja lógica si está disponible.,PASA
-UI-18,Interfaz (e2e_capturas.py),,Reducir el inventario de sillas plegables a 20,Trigger trg_articulo_bu rechaza (RN-03),RN-03: Hay 150 pieza(s) comprometidas en reservaciones vigentes; la cantidad total no puede ser menor.,PASA
-UI-19,Interfaz (e2e_capturas.py),,Cambiar el precio del mantel rectangular a $32.50,Se guarda y trg_articulo_au registra el historial,1 cambio(s) en historial,PASA
-UI-20,Interfaz (e2e_capturas.py),,Alta de un artículo nuevo,Se agrega al catálogo,Artículo “Bocina con micrófono” agregado al catálogo.,PASA
-UI-21,Interfaz (e2e_capturas.py),,Crear categoría Audio,Se crea,Categoría “Audio” creada.,PASA
-UI-22,Interfaz (e2e_capturas.py),,Eliminar la categoría Sillas (tiene artículos),Rechazo por FK,No se puede eliminar porque tiene registros relacionados (historial). Use la baja lógica si está disponible.,PASA
-UI-23,Interfaz (e2e_capturas.py),,Alta de empleado Encargado con contraseña cifrada,Se registra,Empleado Sofía Encargada Prueba registrado.,PASA
-UI-24,Interfaz (e2e_capturas.py),,Reporte de faltantes y daños (vista vw_faltantes_danos),Lista las devoluciones con daños,6 renglón(es),PASA
-UI-25,Interfaz (e2e_capturas.py),,Exportar reporte a CSV,Descarga un archivo .csv,reporte_clientes_20261121.csv,PASA
-UI-26,Interfaz (e2e_capturas.py),,Un Encargado intenta abrir Empleados,Acceso denegado (RN-13),http://localhost:5207/Cuenta/AccesoDenegado?ReturnUrl=%2FEmpleados,PASA
-UI-27,Interfaz (e2e_capturas.py),,Empleado inactivo intenta iniciar sesión,Se niega el acceso,Tu cuenta está inactiva. Consulta al administrador.,PASA
-UI-28,Interfaz (e2e_capturas.py),,"Persistencia: tras cerrar y reabrir la aplicación, la reservación creada sigue Finalizada",Los datos se leen de MySQL,#34 Finalizada,PASA
-UI-29,Interfaz (e2e_capturas.py),,Persistencia: la reservación cancelada sigue Cancelada,Cancelada,#35 Cancelada,PASA
+UI-01,Interfaz (automatizada),,Inicio de sesión con contraseña incorrecta,"Mensaje de error, sin acceso",Usuario o contraseña incorrectos.,PASA
+UI-02,Interfaz (automatizada),,Inicio de sesión del Administrador,Entra al tablero,Tablero · Florecitas Rentas,PASA
+UI-03,Interfaz (automatizada),,Disponibilidad de sillas Tiffany el viernes 2026-12-04 (ejemplo del análisis),10 disponibles (100 - 60 - 30),10 disponibles,PASA
+UI-04,Interfaz (automatizada),,Reservar 20 sillas Tiffany el viernes (solo hay 10),La BD rechaza (RN-03) y el formulario conserva lo capturado,"RN-03: Solo hay 10 pieza(s) disponible(s) de ""Silla Tiffany dorada"" del 2026-12-04 al 2026-12-04; se pidieron 20. | datos conservados",PASA
+UI-05,Interfaz (automatizada),,Crear reservación con 3 artículos por 2 días (sp_crear_reservacion),Se guarda Confirmada; total calculado por la BD igual al de la vista previa,"Reservación #34, total vista $1,590.00 / BD $1,590.00",PASA
+UI-06,Interfaz (automatizada),,Cambiar la cantidad de sillas plegables a 999 en la reservación,Trigger trg_detres_bu rechaza (RN-03),RN-03: Solo hay 150 pieza(s) disponible(s) para esas fechas; se pidieron 999.,PASA
+UI-07,Interfaz (automatizada),,Registrar entrega (sp_registrar_entrega + trigger trg_entrega_ai),Estado cambia a Entregada,Estado: Entregada. Entrega registrada. La reservación ahora está Entregada.,PASA
+UI-08,Interfaz (automatizada),,Devolución con devueltas + dañadas mayor que lo rentado,Rechazo por RN-10,RN-10 · Mantel redondo blanco: devueltas (3) + dañadas (2) supera lo rentado (3).,PASA
+UI-09,Interfaz (automatizada),,Devolución válida con 2 dañadas y 1 faltante (sp_registrar_devolucion),Estado Finalizada y revisión visible,Estado: Finalizada. Devolución registrada con 2 pieza(s) dañada(s) y 1 faltante(s). Reservación finalizada.,PASA
+UI-10,Interfaz (automatizada),,Cancelar una reservación Confirmada (sp_cancelar_reservacion),Estado Cancelada y piezas liberadas,#35 Cancelada,PASA
+UI-11,Interfaz (automatizada),,Búsqueda sin coincidencias en reservaciones,Estado vacío con mensaje,Se muestra estado vacío,PASA
+UI-12,Interfaz (automatizada),,Alta de cliente con teléfono y correo inválidos,Mensajes de validación junto a cada campo,El teléfono debe tener exactamente 10 dígitos.; Escribe un correo válido.,PASA
+UI-13,Interfaz (automatizada),,Alta de cliente con correo ya registrado,Rechazo por UNIQUE (RN-12),Ya existe un registro con ese valor de correo.,PASA
+UI-14,Interfaz (automatizada),,Alta válida de cliente,Se guarda y muestra su ficha,Cliente #25. Cliente Lucero registrado.,PASA
+UI-15,Interfaz (automatizada),,Modificar la dirección del cliente,Cambios guardados,Cambios guardados.,PASA
+UI-16,Interfaz (automatizada),,Eliminar un cliente sin reservaciones,Se elimina,Cliente eliminado.,PASA
+UI-17,Interfaz (automatizada),,Eliminar un cliente con reservaciones,Rechazo por FK ON DELETE RESTRICT (RN-11),No se puede eliminar porque tiene registros relacionados (historial). Use la baja lógica si está disponible.,PASA
+UI-18,Interfaz (automatizada),,Reducir el inventario de sillas plegables a 20,Trigger trg_articulo_bu rechaza (RN-03),RN-03: Hay 150 pieza(s) comprometidas en reservaciones vigentes; la cantidad total no puede ser menor.,PASA
+UI-19,Interfaz (automatizada),,Cambiar el precio del mantel rectangular a $32.50,Se guarda y trg_articulo_au registra el historial,1 cambio(s) en historial,PASA
+UI-20,Interfaz (automatizada),,Alta de un artículo nuevo,Se agrega al catálogo,Artículo “Bocina con micrófono” agregado al catálogo.,PASA
+UI-21,Interfaz (automatizada),,Crear categoría Audio,Se crea,Categoría “Audio” creada.,PASA
+UI-22,Interfaz (automatizada),,Eliminar la categoría Sillas (tiene artículos),Rechazo por FK,No se puede eliminar porque tiene registros relacionados (historial). Use la baja lógica si está disponible.,PASA
+UI-23,Interfaz (automatizada),,Alta de empleado Encargado con contraseña cifrada,Se registra,Empleado Sofía Encargada Prueba registrado.,PASA
+UI-24,Interfaz (automatizada),,Reporte de faltantes y daños (vista vw_faltantes_danos),Lista las devoluciones con daños,6 renglón(es),PASA
+UI-25,Interfaz (automatizada),,Exportar reporte a CSV,Descarga un archivo .csv,reporte_clientes_20261121.csv,PASA
+UI-26,Interfaz (automatizada),,Un Encargado intenta abrir Empleados,Acceso denegado (RN-13),http://localhost:5207/Cuenta/AccesoDenegado?ReturnUrl=%2FEmpleados,PASA
+UI-27,Interfaz (automatizada),,Empleado inactivo intenta iniciar sesión,Se niega el acceso,Tu cuenta está inactiva. Consulta al administrador.,PASA
+UI-28,Interfaz (automatizada),,"Persistencia: tras cerrar y reabrir la aplicación, la reservación creada sigue Finalizada",Los datos se leen de MySQL,#34 Finalizada,PASA
+UI-29,Interfaz (automatizada),,Persistencia: la reservación cancelada sigue Cancelada,Cancelada,#35 Cancelada,PASA

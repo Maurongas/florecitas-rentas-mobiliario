@@ -20,7 +20,7 @@ Sistema que controla el inventario de mobiliario y las reservaciones por fecha, 
 
 ```
 Equipo_Florecitas_ProyectoFinal_BD/
-├── Reporte.pdf                     Reporte técnico (se regenera con docs/reporte/generar_reporte.py)
+├── Reporte.pdf                     Reporte técnico
 ├── README.md
 ├── Aplicacion/                     Solución .NET (Florecitas.Rentas.slnx)
 │   └── src/Florecitas.Rentas.Web/
@@ -38,13 +38,11 @@ Equipo_Florecitas_ProyectoFinal_BD/
 │   ├── 05_pruebas.sql              41 casos de prueba con resultado observado
 │   ├── 06_seguridad_respaldo.sql   Usuario de la app (mínimo privilegio) y respaldo
 │   └── instalar_bd.ps1             Ejecuta todo en orden
-├── Diagramas/                      5 notaciones (SVG editable + PNG + PDF) y su generador
-├── Pruebas/                        Matriz de pruebas, salidas reales, capturas, incidencias, e2e
-├── docs/                           Fuentes del reporte y guía de colaboración
-└── Video/                          (aquí va el video demostrativo de 5 a 8 minutos)
+├── Diagramas/                      5 notaciones (SVG editable + PNG + PDF)
+└── Pruebas/                        Matriz de pruebas, salidas reales, capturas e incidencias
 ```
 
-> Equivalencia con la estructura pedida: `02_rutinas` va antes de los datos para que los datos de prueba también pasen por las reglas de negocio; `05_pruebas` contiene las pruebas de rutinas.
+> `02_rutinas` va antes de los datos para que los datos de prueba también pasen por las reglas de negocio; `05_pruebas` contiene las pruebas de rutinas.
 
 > **Windows:** clona el repositorio en una ruta corta (por ejemplo `C:\dev\florecitas`). Rutas de más de 260 caracteres provocan errores de compilación y de Git.
 
@@ -52,7 +50,6 @@ Equipo_Florecitas_ProyectoFinal_BD/
 
 - MySQL Server 8.0 (y opcionalmente MySQL Workbench)
 - .NET 10 SDK (o Visual Studio 2026 con la carga de trabajo ASP.NET)
-- Opcional, para regenerar diagramas, capturas y reporte: Python 3.12 con `pip install playwright pymupdf` (usa Edge o Chrome instalados)
 
 ## 1. Instalar la base de datos
 
@@ -96,7 +93,7 @@ Abrir http://localhost:5207. En Visual Studio: abrir `Aplicacion/Florecitas.Rent
 | `diana.soto` | `Encargado2026!` | Encargado |
 | `jorge.pena` | `Encargado2026!` | Encargado **inactivo** (no puede entrar) |
 
-**Demostración sugerida para la defensa:**
+**Demostración:**
 1. *Disponibilidad* → elegir el viernes que aparece en la agenda: quedan 10 sillas Tiffany (100 − 60 − 30, el ejemplo del análisis).
 2. *Nueva reservación* para ese viernes con 20 sillas Tiffany → la BD la rechaza (RN-03) y el formulario conserva los datos. Con 10 sí se guarda.
 3. En el detalle: *Registrar entrega* (el trigger la marca Entregada) → *Registrar devolución* con una pieza dañada (pasa a Finalizada).
@@ -106,31 +103,5 @@ Abrir http://localhost:5207. En Visual Studio: abrir `Aplicacion/Florecitas.Rent
 ## 4. Pruebas
 
 - **Base de datos:** `Sql/05_pruebas.sql` (41 casos, válidos y no válidos). Muestra una tabla con el resultado observado de cada caso.
-- **Interfaz:** con la app corriendo y la BD recién instalada:
-  ```powershell
-  python Pruebas\e2e_capturas.py
-  ```
-  (cerrar y abrir la app)
-  ```powershell
-  python Pruebas\e2e_capturas.py fase2
-  ```
-  Genera `Pruebas/resultados_ui.json` y las capturas de `Pruebas/capturas/`.
+- **Interfaz:** 29 casos ejecutados sobre la aplicación; resultados en `Pruebas/resultados_ui.json` y capturas en `Pruebas/capturas/`.
 - Matriz completa: `Pruebas/matriz_pruebas.csv`. Incidencias reales: `Pruebas/incidencias.md`.
-
-## 5. Regenerar diagramas y reporte
-
-```powershell
-python Diagramas\generar_diagramas.py
-```
-```powershell
-python Diagramas\exportar_png.py
-```
-```powershell
-python docs\reporte\generar_reporte.py --puerto 3306 --usuario root --clave TU_CLAVE
-```
-
-El reporte se arma con datos reales de la BD instalada (diccionario de datos, resultados de consultas y de álgebra relacional), por eso debe ejecutarse justo después de instalarla (sin haber corrido `05_pruebas.sql`).
-
-## Trabajo en equipo con Git
-
-Ver [docs/COLABORACION.md](docs/COLABORACION.md): cada integrante sube su parte desde su propia cuenta de GitHub, en su rama y con commits propios.
