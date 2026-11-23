@@ -1,8 +1,7 @@
 /* ======================================================================
    Florecitas · Rentas de mobiliario
-   Sistema de diseño (generado con la guía UI/UX Pro Max:
-   paleta "Wedding/Event Planning" + tipografía "Friendly SaaS").
-   Tokens semánticos -> nunca colores directos en los componentes.
+   Hoja de estilos principal: colores y tipografía definidos como
+   variables y usados por todos los componentes.
    ====================================================================== */
 
 :root {

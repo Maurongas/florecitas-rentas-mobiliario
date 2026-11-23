@@ -4,7 +4,6 @@
 #     .\instalar_bd.ps1                        # localhost:3306, usuario root (pide la clave)
 #     .\instalar_bd.ps1 -Puerto 3307 -Pruebas  # ademas ejecuta 05_pruebas.sql
 #  ADVERTENCIA: borra y vuelve a crear la base rentas_mobiliario.
-#  (Archivo en ASCII a proposito: Windows PowerShell 5.1 lee los .ps1 sin BOM como ANSI.)
 # =====================================================================
 param(
     [string]$Servidor = "localhost",
@@ -17,11 +16,7 @@ param(
 $ErrorActionPreference = "Stop"
 if (-not (Test-Path $Mysql)) { throw "No se encontro mysql.exe en '$Mysql'. Use -Mysql para indicar la ruta." }
 
-if ($env:FLORECITAS_SIN_CLAVE) {
-    $clave = New-Object Security.SecureString
-} else {
-    $clave = Read-Host "Clave de MySQL para $Usuario (Enter si no tiene)" -AsSecureString
-}
+$clave = Read-Host "Clave de MySQL para $Usuario (Enter si no tiene)" -AsSecureString
 $plano = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($clave))
 $env:MYSQL_PWD = $plano   # evita escribir la clave en la linea de comandos
 

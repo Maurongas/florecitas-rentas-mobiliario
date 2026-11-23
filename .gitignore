@@ -6,14 +6,6 @@ obj/
 *.suo
 TestResults/
 
-# Python
-__pycache__/
-*.pyc
-
-# Archivos temporales de pruebas y reporte
-Pruebas/estado_e2e.json
-docs/reporte/_tmp.pdf
-
 # Secretos (la cadena de conexión va en dotnet user-secrets)
 appsettings.*.local.json
 .env
