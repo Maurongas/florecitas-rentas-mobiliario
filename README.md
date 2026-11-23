@@ -20,7 +20,7 @@ Sistema que controla el inventario de mobiliario y las reservaciones por fecha, 
 
 ```
 Equipo_Florecitas_ProyectoFinal_BD/
-├── Reporte.pdf                     Reporte técnico (se regenera con docs/reporte/generar_reporte.py)
+├── Reporte.pdf                     Reporte técnico 
 ├── README.md
 ├── Aplicacion/                     Solución .NET (Florecitas.Rentas.slnx)
 │   └── src/Florecitas.Rentas.Web/
