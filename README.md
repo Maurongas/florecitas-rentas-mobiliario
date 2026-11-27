@@ -6,9 +6,9 @@ Proyecto final de **Base de Datos** y **Ambientes de Programación Visual** — 
 
 | Integrante | Matrícula | Parte principal |
 |---|---|---|
-| Rivera Chavez Josselyn Alexa | 379219 | Diseño del modelo, diagramas, esquema y datos, reporte |
-| Acevedo Carrillo Veronica | 380207 | Rutinas (triggers, funciones, procedimientos), consultas, vistas y pruebas |
-| Arango Gomez Mauro Daniel | 379620 | Aplicación web .NET (capa de datos e interfaz) |
+| Arango Gomez Mauro Daniel | 379620 | **La aplicación:** conexión con MySQL, pantallas, interfaz, inicio de sesión y pruebas de interfaz |
+| Acevedo Carrillo Veronica | 380207 | **La lógica en MySQL:** procedimientos, triggers y vistas que usa la aplicación, y sus pruebas |
+| Rivera Chavez Josselyn Alexa | 379219 | **La base de datos y la documentación:** tablas, usuario de conexión, datos de prueba, instalación, diagramas, presentación y reporte |
 
 Sistema que controla el inventario de mobiliario y las reservaciones por fecha, **impide comprometer más piezas de las disponibles** (la regla la hace cumplir la propia base de datos) y registra entregas, devoluciones, faltantes y daños.
 
@@ -21,6 +21,7 @@ Sistema que controla el inventario de mobiliario y las reservaciones por fecha, 
 ```
 Equipo_Florecitas_ProyectoFinal_APV/
 ├── Reporte.pdf                     Reporte técnico (Ambientes de Programación Visual)
+├── Reportes_individuales/          Un reporte individual por integrante
 ├── Presentacion.pdf                Presentación del proyecto
 ├── README.md
 ├── Aplicacion/                     Solución .NET (Florecitas.Rentas.slnx)
