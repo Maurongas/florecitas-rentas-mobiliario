@@ -19,8 +19,8 @@ Sistema que controla el inventario de mobiliario y las reservaciones por fecha, 
 ## Estructura
 
 ```
-Equipo_Florecitas_ProyectoFinal_BD/
-├── Reporte.pdf                     Reporte técnico
+Equipo_Florecitas_ProyectoFinal_APV/
+├── Reporte.pdf                     Reporte técnico (Ambientes de Programación Visual)
 ├── Presentacion.pdf                Presentación del proyecto
 ├── README.md
 ├── Aplicacion/                     Solución .NET (Florecitas.Rentas.slnx)
